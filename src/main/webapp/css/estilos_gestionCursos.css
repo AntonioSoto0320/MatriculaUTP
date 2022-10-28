@@ -1,0 +1,121 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 24/10/2022, 11:24:42 AM
+    Author     : Paolo Quispe
+*/
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'arial';
+    
+    
+}
+
+.table-plataforma{
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-col-1{
+    width: 18%;
+    background-color: #B01E31;
+    
+}
+
+.table-col-2{
+    
+    background-color: #E7E7E7;
+    
+}
+
+.table-opciones{
+    width: 100%;
+    text-align: center;
+}
+
+.logo_utp_plataforma{
+    width: 200px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.imagen_perfil{
+    width: 115px;
+    margin-bottom: 10px;
+}
+
+.opcion{
+   width: 100%;
+   display: flex;
+   padding:20px ; 
+   text-decoration: none;
+   background-color: #B01E31;
+   color:white;
+   justify-content: center;
+   font-weight:bold;
+   border: 0px;
+   
+}
+
+.cod{
+    display: block;
+    padding-bottom: 10px;
+    color: white;
+    font-weight:bold;
+    
+}
+
+.logout{
+    display: block;
+    background-size: 16px;
+}
+
+
+.titulo{
+    margin-left: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid  #B01E31;
+    width: 1150px
+}
+
+h2{
+    font-size: 20px;
+    display: inline;
+    margin-right: 20px;
+}
+.contenido{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0px;
+}
+
+.menu_ciclo{
+    margin-right: 20px;
+    text-decoration: none;
+    width: 250px;
+    font-size: 20px;
+}
+.boton_buscar{
+    text-decoration: none;
+    background-color: #B01E31;
+    font-size: 20px;
+    margin-right: 20px;
+    color: white;
+    border: 0;
+}
+.boton_agregar{
+    text-decoration: none;
+    background-color: green;
+    font-size: 20px;
+    margin-right: 20px;
+    color: white;
+    border: 0;
+}
+
+.filtros{
+    margin-top: 5px;
+    margin-left: 20px;
+}

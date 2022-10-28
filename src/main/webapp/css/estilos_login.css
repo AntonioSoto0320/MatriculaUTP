@@ -1,0 +1,173 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 24/09/2022, 09:36:03 AM
+    Author     : Paolo Quispe
+*/
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'arial';
+    
+}
+
+.table-principal{
+    width: 1000px;
+    height: 550px;
+    
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-radius: 10px ;
+    
+    
+}
+
+.table-col-1{
+    width: 65%;
+    
+}
+
+.table-col-2{
+    background-color: #B01E31;
+    text-align: center;
+    border-radius: 10px; 
+   
+}
+.img_matricula2022{
+    width:650px;
+    height: 550px;
+    border-radius:10px; 
+    display: block;
+}
+
+
+.Formulario{
+   display: inline-block;
+   
+}
+
+.encabezado{
+    font-size: 30px;
+    font-weight:bold;
+    display: block;
+    padding-bottom: 20px;
+    color: white;
+}
+
+.camp{
+    padding: 7px;
+    margin-bottom: 20px;
+    width: 270px;
+    border-radius: 5px;
+    border: 0px;
+}
+
+.boton{
+    width:200px;
+    text-decoration: none;
+    padding:10px;
+    font-size: 20px;
+    background-color: #81002B ;
+    
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 0;
+    color: white;
+    
+}
+
+.forgot_password{
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding-top: 20px
+}
+
+
+.logo_utp{
+    width: 300px;
+    
+}
+
+
+
+/*
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'arial';
+    align-items: center;
+    
+    
+}
+
+
+.form{
+    
+    width: 500px;
+    margin: 100px auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px #B31E18 solid;
+    border-spacing: 0;
+    border-radius: 20px;
+    
+}
+
+.panel{
+    border-collapse: collapse;
+    
+}
+    
+.camp{
+    padding:7px;
+    margin: 20px 20px 0 20px;
+    width: 205px;
+    border-radius: 5px;
+    border: 1px solid #B31E18;
+   
+   
+}
+
+.large{
+    width: 450px;
+    
+}
+
+.boton{
+    width:400px;
+    text-decoration: none;
+    padding:10px;
+    margin: 20px auto 20px auto ;
+    background-color: #B31E18 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: white;
+    
+}
+
+
+
+.table-header {
+    width: 500px;
+    background-color: #B31E18;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+    border-radius: 17px 17px 0 0;
+    
+    
+}
+img{
+    width: 496px;
+    
+}
+*/

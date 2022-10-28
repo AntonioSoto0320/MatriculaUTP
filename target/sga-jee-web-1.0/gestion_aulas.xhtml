@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+          
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      
+    <h:head>
+        <title>Plataforma UTP</title>
+        <link rel="stylesheet" href="css/estilos_gestionAulas.css"/>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
+            
+    </h:head>
+    
+    <h:body>
+        <h:panelGrid columns="2" columnClasses="table-col-1,table-col-2" styleClass="table-plataforma" >
+            
+            <h:form class="lista-opciones">
+                <h:panelGrid columns="1" styleClass="table-opciones" >
+                
+                    <h:graphicImage value="img/logoUtp_sinfondo.png" styleClass="logo_utp_plataforma" ></h:graphicImage>
+                    
+                    <h:graphicImage value="img/imagen_perfil.png" class="imagen_perfil"></h:graphicImage>
+                    <h:outputText value="Carlos Rodriguez Prieto" styleClass="cod"/> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
+                    <h:outputText value="E21477" styleClass="cod"/> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
+                    
+                    <h:commandButton action="pag_inicio" value="PAGINA DE INICIO" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_cursos" value="GESTION DE CURSOS" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_docentes" value="GESTIÓN DE DOCENTES" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_alumnos" value="GESTIÓN DE ALUMNOS" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_aulas" value="GESTIÓN DE AULAS" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_secciones" value="GESTIÓN DE SECCIONES" class="opcion" ></h:commandButton>
+                    <h:commandButton action="index" value="CERRAR SESIÓN" class="opcion logout" ></h:commandButton>
+                    
+                </h:panelGrid>
+                
+            </h:form>
+            <h:form>
+                <h:panelGrid columns="1" styleClass="contenido">
+                <h1 class="titulo" >Gestión Aulas</h1>
+                
+                
+                <h:panelGroup class="filtros">
+                    <h2>FILTRAR:</h2>
+                   
+                    <h:selectOneMenu value="#" class="menu_ciclo">
+                        <f:selectItem itemValue="0" itemLabel= "PABELLON"/>
+                        <f:selectItem itemValue="1" itemLabel= "1"/>
+                        <f:selectItem itemValue="2" itemLabel= "2"/>
+                        <f:selectItem itemValue="3" itemLabel= "3"/>
+                        
+                    </h:selectOneMenu>
+                    
+                    <h:selectOneMenu value="#" class="menu_ciclo">
+                        <f:selectItem itemValue="0" itemLabel= "PISO"/>
+                        <f:selectItem itemValue="1" itemLabel= "1"/>
+                        <f:selectItem itemValue="2" itemLabel= "2"/>
+                        <f:selectItem itemValue="3" itemLabel= "3"/>
+                        <f:selectItem itemValue="1" itemLabel= "4"/>
+                        <f:selectItem itemValue="2" itemLabel= "5"/>
+                        <f:selectItem itemValue="3" itemLabel= "6"/>
+                        
+                    </h:selectOneMenu>
+                    
+                    <h:commandButton action="#" value="BUSCAR" class="boton_buscar"></h:commandButton>
+                    <h:commandButton action="#" value="AGREGAR" class="boton_agregar"></h:commandButton>
+                    
+                </h:panelGroup>
+                
+                
+                
+                
+                </h:panelGrid>
+                
+            </h:form>
+            
+            
+            
+        </h:panelGrid>
+        
+        
+        
+    </h:body>
+</html>

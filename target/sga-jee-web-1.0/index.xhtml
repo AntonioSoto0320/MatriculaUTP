@@ -1,16 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      >
+      
     <h:head>
-        <title>Matricula UTP</title>
+        <title>LOGIN</title>
+        <link rel="stylesheet" href="css/estilos_login.css"/>
+        
     </h:head>
     <h:body>
-        <h2>Matricula UTP</h2>
-        <h:form>
-            <h:commandButton value="Listar Alumnos" action="listarAlumnos" />
-            <h:commandButton value="Listar Docentes" action="listarDocentes" />
-        </h:form>
+        
+        <h:graphicImage value="img/logo utp.png" class="logo_utp" ></h:graphicImage>
+        
+        <h:panelGrid columns="2" columnClasses="table-col-1,table-col-2" styleClass="table-principal">
+            
+            <h:graphicImage value="img/matricula_login.png" class="img_matricula2022" ></h:graphicImage>
+            
+            <h:form class="Formulario">
+                
+                <h:panelGrid styleClass="Celda_Formulario">
+                    <h:outputText value="INICIO DE SESIÓN" styleClass="encabezado"/>
+                    <h:inputText pt:placeholder="CORREO" class="camp" />
+                    <h:inputText pt:placeholder="CONTRASEÑA" class="camp" />
+                                        
+                    <h:commandButton action="pag_inicio" value="INGRESAR" class="boton"></h:commandButton>
+                    
+                    <h:commandLink class="forgot_password">Recuperar Contraseña</h:commandLink>
+                </h:panelGrid>
+                
+            </h:form>
+            
+        </h:panelGrid>
+            
+        
+        
+        
+        <!--  
+            <h:form class="form" >
+
+                <h:panelGrid class="panel" columns="1" title="Section for login" headerClass="table-header" footerClass="table-footer" >
+
+                    <img class="img_matrícula" src="Fondo matrícula.PNG" alt="alt"/>
+
+                    <f:facet name="header" >
+                        <h:outputText value="INICIO DE SESIÓN" class="encabezado"/>
+                    </f:facet>
+
+                            <h:inputText pt:placeholder="CORREO" class="camp large" />
+                            <h:inputText pt:placeholder="CONTRASEÑA" class="camp large" />
+
+                    <f:facet name="footer">
+                         <h:commandLink action="#" class="boton" >INGRESAR</h:commandLink>
+                    </f:facet>
+
+                </h:panelGrid>
+
+            </h:form>
+        
+        
+        -->
+        
+        
+        
+        
+        
+        
+        
+        
     </h:body>
 </html>
+
