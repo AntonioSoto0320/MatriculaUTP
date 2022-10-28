@@ -1,0 +1,17 @@
+servicio\AlumnoService.class
+servicio\AlumnoServiceImpl.class
+web\DocenteBean.class
+domain\Rol.class
+domain\Secciones.class
+web\AlumnoBean.class
+web\ConfiguracionBean.class
+datos\DocenteDao.class
+domain\Docentes.class
+servicio\DocenteService.class
+datos\AlumnoDao.class
+datos\DocenteDaoImpl.class
+domain\Usuario.class
+servicio\DocenteServiceImpl.class
+datos\AlumnoDaoImpl.class
+domain\Alumnos.class
+domain\Aulas.class

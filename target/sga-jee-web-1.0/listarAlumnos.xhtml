@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Listado de Alumnos</title>
+    </h:head>
+    <h:body>
+        <p:ajaxStatus style="width: 16px;height: 16px;" id="ajaxStatusPanel">
+            <f:facet name="start">
+                <h:graphicImage library="images" name="ajaxloading.gif" />
+            </f:facet>
+
+            <f:facet name="complete">
+                <h:outputText value="" />
+            </f:facet>
+
+        </p:ajaxStatus>
+
+        <h:form id="alumnosListForm">
+            <p:growl id="messages" showDetail="true" />
+            <p:messages/>
+
+            <p:dataTable id="alumnosDataTable" value="#{alumnoBean.alumnos}" var="alumno" editable="true" rowKey="#{alumno.idAlumnos}" 
+                         selection="#{alumnoBean.alumnoSeleccionado}" selectionMode="single" >
+
+                <f:facet name="header">
+                    Listado de Alumnos
+                </f:facet>
+
+                <p:column headerText="Id">
+                    <h:outputText value="#{alumno.idAlumnos}" />
+                </p:column>
+
+                <p:column headerText="Dni">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{alumno.dni}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{alumno.dni}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{alumno.nombre}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{alumno.nombre}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Apellido">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{alumno.apellido}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{alumno.apellido}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Correo">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{alumno.correo}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{alumno.correo}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Facultad">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{alumno.facultad}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{alumno.facultad}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Carrera">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{alumno.carrera}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{alumno.carrera}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Regresar" action="index" />
+                    <p:spacer height="5px"/>
+                    <p:commandButton value="Agregar" actionListener="#{alumnoBean.reiniciarAlumnoSeleccionado}"
+                                     update=":dialogForm" oncomplete="PF('alumnoDialog').show()" />
+                </f:facet>
+
+                <p:column headerText="Opciones" style="width: 50px">
+                    <p:rowEditor/>
+                </p:column>
+
+                <p:ajax event="rowEdit" listener="#{alumnoBean.editListener}"/>
+
+            </p:dataTable>
+
+            <p:contextMenu for="alumnosDataTable">
+                <p:menuitem value="Eliminar" update="alumnosListForm:alumnosDataTable" icon="ui-icon-close" 
+                            actionListener="#{alumnoBean.eliminarAlumno}" />
+            </p:contextMenu>
+
+        </h:form>
+
+        <p:dialog id="alumnoDlg" widgetVar="alumnoDialog" header="Agregar Alumno" modal="true" showEffect="fade" hideEffect="fade" 
+                  resizable="false" >
+            <h:form id="dialogForm">
+                <p:outputPanel id="docenteDetail" style="text-align: center">
+                    <p:panelGrid id="display" columns="4" columnClasses="label, value" >
+                        <h:outputText value="Dni" />
+                        <h:inputText value="#{alumnoBean.alumnoSeleccionado.dni}" />
+
+                        <h:outputText value="Nombre" />
+                        <h:inputText value="#{alumnoBean.alumnoSeleccionado.nombre}" />
+                        
+                        <h:outputText value="Apellido" />
+                        <h:inputText value="#{alumnoBean.alumnoSeleccionado.apellido}" />
+
+                        <h:outputText value="Correo" />
+                        <h:inputText value="#{alumnoBean.alumnoSeleccionado.correo}" />
+                        
+                        <h:outputText value="Facultad" />
+                        <h:inputText value="#{alumnoBean.alumnoSeleccionado.facultad}" />
+
+                        <h:outputText value="Carrera" />
+                        <h:inputText value="#{alumnoBean.alumnoSeleccionado.carrera}" />
+
+                        <f:facet name="footer" >
+                            <p:commandButton value="Agregar" actionListener="#{alumnoBean.agregarAlumno}" 
+                                             update="display,:alumnosListForm:alumnosDataTable" oncomplete="PF('alumnoDialog').hide();" />
+                        </f:facet>
+                    </p:panelGrid>
+                </p:outputPanel>
+            </h:form>
+        </p:dialog>
+
+
+    </h:body>
+</html>
