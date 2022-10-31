@@ -4,7 +4,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import datos.UsuarioDao;
-import domain.Docentes;
 import domain.Usuario;
 
 @Stateless
@@ -36,6 +35,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void eliminarUsuario(Usuario usuario) {
         usuairoDao.deleteUsuario(usuario);
+    }
+
+    @Override
+    public String usuarioValidation(Usuario usuario) {
+       return usuairoDao.usuarioValidation(usuario);
     }
     
 }

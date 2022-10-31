@@ -16,4 +16,6 @@ public interface UsuarioService {
     
     public void eliminarUsuario(Usuario usuario);
     
+    public String usuarioValidation(Usuario usuario);
+    
 }

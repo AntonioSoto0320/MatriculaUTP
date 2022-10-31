@@ -1,10 +1,15 @@
 package datos;
 
+import domain.Alumnos;
+import domain.Docentes;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.*;
 import domain.Usuario;
-import java.util.Iterator;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+import login.SessionUtils;
 
 @Stateless
 public class UsuarioDaoImpl implements UsuarioDao {
@@ -38,22 +43,47 @@ public class UsuarioDaoImpl implements UsuarioDao {
     }
 
     @Override
-    public Usuario usuarioValidation(Usuario usuario) {
-        em.getTransaction().begin();
-        Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.usuario =:usuario AND u.contrase\u00f1a =:contraseña ");
-        q.setParameter(":usuario", usuario.getUsuario());
-        q.setParameter(":contraseña", usuario.getContraseña());
-//FALTA HACER LA CONSULTA VALIDACION DE USUARIO
-//        Iterator iter = q.getR    //getResultIterator();
-//        while (iter.hasNext()) {
-//            Usuario u = (Usuario) iter.next();
-//            System.out.println("Found a claus with id " + c.id);
-//        }
+    public String usuarioValidation(Usuario usuario) {
+        List<Usuario> usuarios = em.createNamedQuery("Usuario.findAll").getResultList();
+        System.out.println("Lista de Usuarios:" + usuarios);
+        String respuesta = "index";
+        for (Usuario user : usuarios) {
+            if (user.getUsuario().equals(usuario.getUsuario()) && user.getContraseña().equals(usuario.getContraseña())) {
+                for (Alumnos alumno : user.getAlumnosList()) {
+                    System.out.println("entre a alumno : " + alumno);
+                    HttpSession session = SessionUtils.getSession();
+                    session.setAttribute("username", user.getUsuario());
+                    session.setAttribute("nombre", alumno.getNombre().concat(" ").concat(alumno.getApellido()));
 
-        em.getTransaction().commit();
+                }
 
-        //por ahora retorna null
-        return null;
+                for (Docentes docente : user.getDocentesList()) {
+                    System.out.println("entre a docente : " + docente);
+                    HttpSession session = SessionUtils.getSession();
+                    session.setAttribute("username", user.getUsuario());
+                    session.setAttribute("nombre", docente.getNombre().concat(" ").concat(docente.getApellido()));
+
+                }
+
+                HttpSession session = SessionUtils.getSession();
+                session.setAttribute("username", user.getUsuario());
+
+                respuesta = "pag_inicio";
+            }
+        }
+
+        if (respuesta.equals("pag_inicio")) {
+//            HttpSession session = SessionUtils.getSession();
+//            session.setAttribute("username", usuario.getUsuario());
+            return respuesta;
+        } else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Incorrecto Username y Password",
+                            "Por favor ingrese un username y Password correctos"));
+            return respuesta;
+        }
+
     }
-
 }

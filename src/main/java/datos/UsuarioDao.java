@@ -14,6 +14,6 @@ public interface UsuarioDao {
     
     public void deleteUsuario(Usuario usuario);
     
-    public Usuario usuarioValidation(Usuario usuario);
+    public String usuarioValidation(Usuario usuario);
     
 }

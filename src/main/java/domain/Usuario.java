@@ -6,6 +6,7 @@ package domain;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.inject.Named;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -69,6 +70,13 @@ public class Usuario implements Serializable {
     public Usuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
+
+    public Usuario(String usuario, String contraseña) {
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+    }
+    
+    
 
     public Usuario(Integer idUsuario, String usuario, String contraseña) {
         this.idUsuario = idUsuario;
@@ -146,9 +154,16 @@ public class Usuario implements Serializable {
         return true;
     }
 
+//    @Override
+//    public String toString() {
+//        return "mx.com.gm.sga.domain.Usuario_1[ idUsuario=" + idUsuario + " ]";
+//    }
+
     @Override
     public String toString() {
-        return "mx.com.gm.sga.domain.Usuario_1[ idUsuario=" + idUsuario + " ]";
+        return "Usuario{" + "idUsuario=" + idUsuario + ", usuario=" + usuario + ", contrase\u00f1a=" + contraseña + ", alumnosList=" + alumnosList + ", idRol=" + idRol + ", docentesList=" + docentesList + '}';
     }
+    
+    
     
 }

@@ -23,10 +23,10 @@
                 
                 <h:panelGrid styleClass="Celda_Formulario">
                     <h:outputText value="INICIO DE SESIÓN" styleClass="encabezado"/>
-                    <h:inputText pt:placeholder="CORREO" class="camp" />
-                    <h:inputText pt:placeholder="CONTRASEÑA" class="camp" />
+                    <h:inputText pt:placeholder="CORREO" value="#{usuarioBean.usuario.usuario}" class="camp" />
+                    <h:inputText pt:placeholder="CONTRASEÑA" value="#{usuarioBean.usuario.contraseña}" class="camp" />
                                         
-                    <h:commandButton action="pag_inicio" value="INGRESAR" class="boton"></h:commandButton>
+                    <h:commandButton action="#{usuarioBean.validarUsuario}" value="INGRESAR" class="boton"></h:commandButton>
                     
                     <h:commandLink class="forgot_password">Recuperar Contraseña</h:commandLink>
                 </h:panelGrid>
@@ -36,39 +36,7 @@
         </h:panelGrid>
             
         
-        
-        
-        <!--  
-            <h:form class="form" >
-
-                <h:panelGrid class="panel" columns="1" title="Section for login" headerClass="table-header" footerClass="table-footer" >
-
-                    <img class="img_matrícula" src="Fondo matrícula.PNG" alt="alt"/>
-
-                    <f:facet name="header" >
-                        <h:outputText value="INICIO DE SESIÓN" class="encabezado"/>
-                    </f:facet>
-
-                            <h:inputText pt:placeholder="CORREO" class="camp large" />
-                            <h:inputText pt:placeholder="CONTRASEÑA" class="camp large" />
-
-                    <f:facet name="footer">
-                         <h:commandLink action="#" class="boton" >INGRESAR</h:commandLink>
-                    </f:facet>
-
-                </h:panelGrid>
-
-            </h:form>
-        
-        
-        -->
-        
-        
-        
-        
-        
-        
-        
+     
         
     </h:body>
 </html>

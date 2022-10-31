@@ -23,8 +23,8 @@
                     <h:graphicImage value="img/logoUtp_sinfondo.png" styleClass="logo_utp_plataforma" ></h:graphicImage>
                     
                     <h:graphicImage value="img/imagen_perfil.png" class="imagen_perfil"></h:graphicImage>
-                    <h:outputText value="Carlos Rodriguez Prieto" styleClass="cod"/> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
-                    <h:outputText value="E21477" styleClass="cod"/> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
+                    <h:outputText value="#{session.getAttribute('nombre')}" styleClass="cod" /> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
+                    <h:outputText value="#{session.getAttribute('username')}" styleClass="cod"/> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
                     
                     <h:commandButton action="pag_inicio" value="PAGINA DE INICIO" class="opcion" ></h:commandButton>
                     <h:commandButton action="gestion_cursos" value="GESTION DE CURSOS" class="opcion" ></h:commandButton>
@@ -32,7 +32,7 @@
                     <h:commandButton action="gestion_alumnos" value="GESTIÓN DE ALUMNOS" class="opcion" ></h:commandButton>
                     <h:commandButton action="gestion_aulas" value="GESTIÓN DE AULAS" class="opcion" ></h:commandButton>
                     <h:commandButton action="gestion_secciones" value="GESTIÓN DE SECCIONES" class="opcion" ></h:commandButton>
-                    <h:commandButton action="index" value="CERRAR SESIÓN" class="opcion logout" ></h:commandButton>
+                    <h:commandButton action="#{usuarioBean.logout()}" value="CERRAR SESIÓN" class="opcion logout" ></h:commandButton>
                     
                 </h:panelGrid>
                 
