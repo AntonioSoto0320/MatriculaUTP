@@ -6,9 +6,7 @@ package domain;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.inject.Named;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -56,12 +54,12 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "contrase\u00f1a")
     private String contraseña;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private List<Alumnos> alumnosList;
     @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Rol idRol;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private List<Docentes> docentesList;
 
     public Usuario() {
@@ -70,13 +68,6 @@ public class Usuario implements Serializable {
     public Usuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
-
-    public Usuario(String usuario, String contraseña) {
-        this.usuario = usuario;
-        this.contraseña = contraseña;
-    }
-    
-    
 
     public Usuario(Integer idUsuario, String usuario, String contraseña) {
         this.idUsuario = idUsuario;
@@ -154,16 +145,9 @@ public class Usuario implements Serializable {
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        return "mx.com.gm.sga.domain.Usuario_1[ idUsuario=" + idUsuario + " ]";
-//    }
-
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", usuario=" + usuario + ", contrase\u00f1a=" + contraseña + ", alumnosList=" + alumnosList + ", idRol=" + idRol + ", docentesList=" + docentesList + '}';
+        return "com.utp.matriculate.fffffffffffffffffffffffffffff.Usuario[ idUsuario=" + idUsuario + " ]";
     }
-    
-    
     
 }

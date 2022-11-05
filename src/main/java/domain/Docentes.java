@@ -86,7 +86,7 @@ public class Docentes implements Serializable {
     @Column(name = "carrera")
     private String carrera;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Usuario idUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDocente", fetch = FetchType.LAZY)
     private List<Secciones> seccionesList;
@@ -189,6 +189,10 @@ public class Docentes implements Serializable {
     public void setSeccionesList(List<Secciones> seccionesList) {
         this.seccionesList = seccionesList;
     }
+    
+    public String getNombreCompleto() {
+        return nombre.concat(" ").concat(apellido);
+    }
 
     @Override
     public int hashCode() {
@@ -212,7 +216,7 @@ public class Docentes implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.com.gm.sga.domain.Docentes[ idDocentes=" + idDocentes + " ]";
+        return "com.utp.matriculate.fffffffffffffffffffffffffffff.Docentes[ idDocentes=" + idDocentes + " ]";
     }
     
 }

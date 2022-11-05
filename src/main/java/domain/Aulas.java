@@ -152,7 +152,7 @@ public class Aulas implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.com.gm.sga.domain.Aulas[ idAulas=" + idAulas + " ]";
+        return "com.utp.matriculate.fffffffffffffffffffffffffffff.Aulas[ idAulas=" + idAulas + " ]";
     }
     
 }

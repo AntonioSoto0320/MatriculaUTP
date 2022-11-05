@@ -109,7 +109,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.com.gm.sga.domain.Rol[ idRol=" + idRol + " ]";
+        return "com.utp.matriculate.fffffffffffffffffffffffffffff.Rol[ idRol=" + idRol + " ]";
     }
     
 }

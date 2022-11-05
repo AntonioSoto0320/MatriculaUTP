@@ -1,7 +1,10 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package domain;
 
 import java.io.Serializable;
-import javax.inject.Named;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -73,7 +76,7 @@ public class Alumnos implements Serializable {
     @Column(name = "carrera")
     private String carrera;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Usuario idUsuario;
 
     public Alumnos() {
@@ -179,7 +182,7 @@ public class Alumnos implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.com.gm.sga.domain.Alumnos[ idAlumnos=" + idAlumnos + " ]";
+        return "com.utp.matriculate.fffffffffffffffffffffffffffff.Alumnos[ idAlumnos=" + idAlumnos + " ]";
     }
     
 }

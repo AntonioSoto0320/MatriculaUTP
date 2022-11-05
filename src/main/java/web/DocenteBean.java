@@ -6,6 +6,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import domain.Docentes;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.apache.logging.log4j.*;
 import org.primefaces.event.RowEditEvent;
 import servicio.DocenteService;
@@ -33,6 +36,14 @@ public class DocenteBean {
         this.docentes = docenteService.listarDocentes();
         log.debug("docentes recuperados en ManagedBean:" + this.docentes);
         this.docenteSeleccionado = new Docentes();
+    }
+
+    
+    public List<Docentes> completeDocente(String query) {
+        String queryLowerCase = query.toLowerCase();
+        List<Docentes> listadoDocentes = docentes;
+        
+        return listadoDocentes.stream().filter(t -> t.getNombreCompleto().toLowerCase().contains(queryLowerCase)).collect(Collectors.toList());
     }
 
     public void editListener(RowEditEvent event) {
@@ -69,6 +80,7 @@ public class DocenteBean {
     }
 
     public void reiniciarDocenteSeleccionado() {
-        this.docenteSeleccionado= new Docentes();
+        this.docenteSeleccionado = new Docentes();
     }
+
 }

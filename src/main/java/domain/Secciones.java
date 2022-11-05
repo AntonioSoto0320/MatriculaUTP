@@ -54,6 +54,9 @@ public class Secciones implements Serializable {
     @JoinColumn(name = "id_aula", referencedColumnName = "id_aulas")
     @ManyToOne(fetch = FetchType.LAZY)
     private Aulas idAula;
+    @JoinColumn(name = "id_curso", referencedColumnName = "id_cursos")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Cursos idCurso;
     @JoinColumn(name = "id_docente", referencedColumnName = "id_docentes")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Docentes idDocente;
@@ -103,6 +106,14 @@ public class Secciones implements Serializable {
         this.idAula = idAula;
     }
 
+    public Cursos getIdCurso() {
+        return idCurso;
+    }
+
+    public void setIdCurso(Cursos idCurso) {
+        this.idCurso = idCurso;
+    }
+
     public Docentes getIdDocente() {
         return idDocente;
     }
@@ -133,7 +144,7 @@ public class Secciones implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.com.gm.sga.domain.Secciones[ idSecciones=" + idSecciones + " ]";
+        return "com.utp.matriculate.fffffffffffffffffffffffffffff.Secciones[ idSecciones=" + idSecciones + " ]";
     }
     
 }

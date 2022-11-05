@@ -2,7 +2,6 @@ package datos;
 
 import java.util.List;
 import domain.Alumnos;
-import domain.Usuario;
 
 public interface AlumnoDao {
     public List<Alumnos> findAllAlumnos();
