@@ -1,8 +1,10 @@
 servicio\AlumnoService.class
 servicio\ModalidadServiceImpl.class
+servicio\AulaService.class
 servicio\UsuarioServiceImpl.class
 web\ModalidadBean.class
 web\ConfiguracionBean.class
+web\AulaBean.class
 servicio\CursoService.class
 servicio\DocenteService.class
 domain\Modalidad.class
@@ -23,6 +25,7 @@ domain\Secciones.class
 web\UsuarioBean.class
 datos\UsuarioDaoImpl.class
 datos\ModalidadDaoImpl.class
+servicio\AulaServiceImpl.class
 web\AlumnoBean.class
 login\SessionUtils.class
 web\CursoBean.class
@@ -31,7 +34,9 @@ servicio\UsuarioService.class
 domain\Docentes.class
 datos\DocenteDaoImpl.class
 servicio\DocenteServiceImpl.class
+datos\AulaDaoImpl.class
 datos\ModalidadDao.class
+datos\AulaDao.class
 domain\Alumnos.class
 datos\CursoDao.class
 servicio\CursoServiceImpl.class

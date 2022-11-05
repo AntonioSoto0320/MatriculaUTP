@@ -55,7 +55,7 @@
                     </h:panelGroup>
 
                     <h:panelGroup class="filtros_agregar" >
-                        
+
                         <div class="field col-12 md:col-4">
                             <p:outputLabel value="Curso" for="@next"/>
                             <p:autoComplete id="curso" dropdown="true" maxResults="5" value="#{cursoBean.cursoSeleccionado}"
@@ -77,16 +77,13 @@
                     </h:panelGroup>
 
                     <h:panelGroup class="filtros_agregar" >
-                        <h2 class="subtitulo" >AULA:</h2>
-
-                        <h:selectOneMenu value="#" class="menu_ciclo">
-                            <f:selectItem itemValue="0" itemLabel= "E007"/>
-                            <f:selectItem itemValue="1" itemLabel= "A006"/>
-                            <f:selectItem itemValue="2" itemLabel= "A521"/>
-                            <f:selectItem itemValue="3" itemLabel= "B123"/>
-
-
-                        </h:selectOneMenu>
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Aula" for="@next"/>
+                            <p:autoComplete id="aula" dropdown="true" maxResults="5" value="#{aulaBean.aulaSeleccionada}"
+                                            completeMethod="#{aulaBean.completeAula}"
+                                            var="aula" itemLabel="#{aula.aula}" itemValue="#{aula}"
+                                            forceSelection="true" scrollHeight="250"/>
+                        </div>
 
                         <h:commandButton action="#" value="AGREGAR" class="boton_agregar"></h:commandButton>
 

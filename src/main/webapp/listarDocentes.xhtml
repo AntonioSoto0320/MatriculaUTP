@@ -20,11 +20,11 @@
 
         </p:ajaxStatus>
 
-        <h:form id="docentesListForm">
+        <h:form id="aulasListForm">
             <p:growl id="messages" showDetail="true" />
             <p:messages/>
 
-            <p:dataTable id="docentesDataTable" value="#{docenteBean.docentes}" var="docente" editable="true" rowKey="#{docente.idDocentes}" 
+            <p:dataTable id="aulasDataTable" value="#{docenteBean.docentes}" var="docente" editable="true" rowKey="#{docente.idDocentes}" 
                          selection="#{docenteBean.docenteSeleccionado}" selectionMode="single" >
 
                 <f:facet name="header">
@@ -134,10 +134,10 @@
 
         </h:form>
 
-        <p:dialog id="docenteDlg" widgetVar="docenteDialog" header="Agregar Docente" modal="true" showEffect="fade" hideEffect="fade" 
+        <p:dialog id="aulaDlg" widgetVar="docenteDialog" header="Agregar Docente" modal="true" showEffect="fade" hideEffect="fade" 
                   resizable="false" >
             <h:form id="dialogForm">
-                <p:outputPanel id="docenteDetail" style="text-align: center">
+                <p:outputPanel id="aulaDetail" style="text-align: center">
                     <p:panelGrid id="display" columns="4" columnClasses="label, value" >
                         <h:outputText value="Dni" />
                         <h:inputText value="#{docenteBean.docenteSeleccionado.dni}" />

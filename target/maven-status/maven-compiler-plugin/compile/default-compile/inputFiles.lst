@@ -1,11 +1,13 @@
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Secciones.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\ModalidadService.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\AulaDao.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\AlumnoServiceImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\CursoDao.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\DocenteDao.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\DocenteService.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\UsuarioDaoImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\AlumnoDaoImpl.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\AulaBean.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\ModalidadBean.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\ModalidadDaoImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\DocenteBean.java
@@ -21,6 +23,7 @@ C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\d
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\login\JAXRSConfiguration.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Aulas.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\ModalidadDao.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\AulaService.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\UsuarioBean.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\AlumnoBean.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\login\SessionUtils.java
@@ -35,3 +38,5 @@ C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\s
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\CursoBean.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\DocenteServiceImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\UsuarioServiceImpl.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\AulaServiceImpl.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\AulaDaoImpl.java

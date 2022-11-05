@@ -39,7 +39,7 @@ public class AlumnoBean {
         Alumnos alumno = (Alumnos) event.getObject();
         alumnoService.modificarUsuario(alumno);
     }
-    
+     
       public Alumnos getAlumnoSeleccionado() {
         return alumnoSeleccionado;
     }
