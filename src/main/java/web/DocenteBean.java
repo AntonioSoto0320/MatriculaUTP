@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import domain.Docentes;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.apache.logging.log4j.*;
 import org.primefaces.event.RowEditEvent;
 import servicio.DocenteService;
@@ -19,12 +19,14 @@ public class DocenteBean {
 
     Logger log = LogManager.getRootLogger();
 
+    private Map<Integer,  Docentes> docentesAsMap;
+    List<Docentes> docentes;
+
     @Inject
     private DocenteService docenteService;
 
     private Docentes docenteSeleccionado;
 
-    List<Docentes> docentes;
 
     public DocenteBean() {
         log.debug("Iniciando el objeto DocenteBean");
@@ -38,11 +40,10 @@ public class DocenteBean {
         this.docenteSeleccionado = new Docentes();
     }
 
-    
     public List<Docentes> completeDocente(String query) {
         String queryLowerCase = query.toLowerCase();
         List<Docentes> listadoDocentes = docentes;
-        
+
         return listadoDocentes.stream().filter(t -> t.getNombreCompleto().toLowerCase().contains(queryLowerCase)).collect(Collectors.toList());
     }
 
@@ -81,6 +82,17 @@ public class DocenteBean {
 
     public void reiniciarDocenteSeleccionado() {
         this.docenteSeleccionado = new Docentes();
+    }
+    
+     public List<Docentes> getDocentesConverter() {
+        return new ArrayList<>(docentes);
+    }
+
+    public Map<Integer, Docentes> getDocentesAsMap() {
+        if (docentesAsMap == null) {
+            docentesAsMap = getDocentesConverter().stream().collect(Collectors.toMap(Docentes::getIdDocentes, docente -> docente));
+        }
+        return docentesAsMap;
     }
 
 }

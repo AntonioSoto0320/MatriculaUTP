@@ -1,7 +1,9 @@
 package web;
 
 import domain.Aulas;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -16,6 +18,8 @@ import servicio.AulaService;
 public class AulaBean {
     
     Logger log = LogManager.getRootLogger();
+    
+    private Map<Integer,Aulas> aulasAsMap;
     
     @Inject
     private AulaService aulaService;
@@ -79,5 +83,16 @@ public class AulaBean {
     
     public void reiniciarAulaSeleccionado(){
         this.aulaSeleccionada = new Aulas();
+    }
+    
+        public List<Aulas> getAulasConverter() {
+        return new ArrayList<>(aulas);
+    }
+
+    public Map<Integer, Aulas> getAulasAsMap() {
+        if (aulasAsMap == null) {
+            aulasAsMap = getAulasConverter().stream().collect(Collectors.toMap(Aulas::getIdAulas, aula -> aula));
+        }
+        return aulasAsMap;
     }
 }

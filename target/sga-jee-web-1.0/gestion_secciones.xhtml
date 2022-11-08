@@ -49,7 +49,7 @@
                             <p:autoComplete id="modalidad" dropdown="true" maxResults="5" value="#{modalidadBean.modalidadSeleccionado}"
                                             completeMethod="#{modalidadBean.completeModalidad}"
                                             var="modalidad" itemLabel="#{modalidad.modalidad}" itemValue="#{modalidad}"
-                                            forceSelection="true" scrollHeight="250"/>
+                                            converter="#{modalidadConverter}" forceSelection="true" scrollHeight="250"/>
                         </div>
 
                     </h:panelGroup>
@@ -61,7 +61,7 @@
                             <p:autoComplete id="curso" dropdown="true" maxResults="5" value="#{cursoBean.cursoSeleccionado}"
                                             completeMethod="#{cursoBean.completeCurso}"
                                             var="curso" itemLabel="#{curso.nombre}" itemValue="#{curso}"
-                                            forceSelection="true" scrollHeight="250"/>
+                                            converter="#{cursoConverter}" forceSelection="true" scrollHeight="250"/>
                         </div>
 
                     </h:panelGroup>
@@ -72,7 +72,7 @@
                             <p:autoComplete id="docente" dropdown="true" maxResults="5" value="#{docenteBean.docenteSeleccionado}"
                                             completeMethod="#{docenteBean.completeDocente}"
                                             var="docente" itemLabel="#{docente.nombre} #{docente.apellido}" itemValue="#{docente}"
-                                            forceSelection="true" scrollHeight="250"/>
+                                            converter="#{docenteConverter}" forceSelection="true" scrollHeight="250"/>
                         </div>
                     </h:panelGroup>
 
@@ -82,10 +82,10 @@
                             <p:autoComplete id="aula" dropdown="true" maxResults="5" value="#{aulaBean.aulaSeleccionada}"
                                             completeMethod="#{aulaBean.completeAula}"
                                             var="aula" itemLabel="#{aula.aula}" itemValue="#{aula}"
-                                            forceSelection="true" scrollHeight="250"/>
+                                            converter="#{aulaConverter}" forceSelection="true" scrollHeight="250"/>
                         </div>
 
-                        <h:commandButton action="#" value="AGREGAR" class="boton_agregar"></h:commandButton>
+                        <h:commandButton action="#{seccionBean.obtenerParametros}" value="AGREGAR" class="boton_agregar"/>
 
                     </h:panelGroup>
 

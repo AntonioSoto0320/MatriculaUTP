@@ -1,9 +1,11 @@
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Secciones.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\ModalidadService.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\CursoConverter.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\AulaDao.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\AlumnoServiceImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\CursoDao.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\DocenteDao.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\DocenteConverter.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\DocenteService.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\UsuarioDaoImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\AlumnoDaoImpl.java
@@ -19,8 +21,10 @@ C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\w
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Docentes.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Usuario.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Modalidad.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\SeccionBean.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\AlumnoDao.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\login\JAXRSConfiguration.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\ModalidadConverter.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Aulas.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\ModalidadDao.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\AulaService.java
@@ -31,6 +35,7 @@ C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\d
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\login\DVDLibraryBean.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\AlumnoService.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\ModalidadServiceImpl.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\AulaConverter.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\CursoDaoImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Alumnos.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\DocenteDaoImpl.java

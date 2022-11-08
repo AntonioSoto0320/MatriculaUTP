@@ -6,6 +6,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import domain.Cursos;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.apache.logging.log4j.*;
 import org.primefaces.event.RowEditEvent;
@@ -16,6 +18,7 @@ import servicio.CursoService;
 public class CursoBean {
     
     Logger log = LogManager.getRootLogger();
+     private Map<Integer,Cursos> CursosAsMap;
     
     @Inject
     private CursoService cursoService;
@@ -64,19 +67,30 @@ public class CursoBean {
         this.cursos = cursos;
     }
     
-    public void agregarAlumno(){
+    public void agregarCurso(){
         this.cursoService.registrarCurso(cursoSeleccionado);
         this.cursos.add(cursoSeleccionado);
         this.cursoSeleccionado = null;
     }
     
-    public void eliminarAlumno(){
+    public void eliminarCurso(){
         this.cursoService.eliminarCurso(cursoSeleccionado);
         this.cursos.remove(this.cursoSeleccionado);
         this.cursoSeleccionado = null;
     }
     
-    public void reiniciarAlumnoSeleccionado(){
+    public void reiniciarCursoSeleccionado(){
         this.cursoSeleccionado = new Cursos();
+    }
+    
+      public List<Cursos> getCursosConverter() {
+        return new ArrayList<>(cursos);
+    }
+
+    public Map<Integer, Cursos> getCursosAsMap() {
+        if (CursosAsMap == null) {
+            CursosAsMap = getCursosConverter().stream().collect(Collectors.toMap(Cursos::getIdCursos, curso -> curso));
+        }
+        return CursosAsMap;
     }
 }
