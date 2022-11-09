@@ -46,8 +46,8 @@
                     <h:panelGroup class="filtros_agregar" >
                         <div class="field col-12 md:col-4">
                             <p:outputLabel value="Modalidad" for="@next"/>
-                            <p:autoComplete id="modalidad" dropdown="true" maxResults="5" value="#{modalidadBean.modalidadSeleccionado}"
-                                            completeMethod="#{modalidadBean.completeModalidad}"
+                            <p:autoComplete id="modalidad" dropdown="true" maxResults="5" value="#{seccionBean.modalidadSeleccionado}"
+                                            completeMethod="#{seccionBean.completeModalidad}"
                                             var="modalidad" itemLabel="#{modalidad.modalidad}" itemValue="#{modalidad}"
                                             converter="#{modalidadConverter}" forceSelection="true" scrollHeight="250"/>
                         </div>
@@ -58,8 +58,8 @@
 
                         <div class="field col-12 md:col-4">
                             <p:outputLabel value="Curso" for="@next"/>
-                            <p:autoComplete id="curso" dropdown="true" maxResults="5" value="#{cursoBean.cursoSeleccionado}"
-                                            completeMethod="#{cursoBean.completeCurso}"
+                            <p:autoComplete id="curso" dropdown="true" maxResults="5" value="#{seccionBean.cursoSeleccionado}"
+                                            completeMethod="#{seccionBean.completeCurso}"
                                             var="curso" itemLabel="#{curso.nombre}" itemValue="#{curso}"
                                             converter="#{cursoConverter}" forceSelection="true" scrollHeight="250"/>
                         </div>
@@ -69,8 +69,8 @@
                     <h:panelGroup class="filtros_agregar" >
                         <div class="field col-12 md:col-4">
                             <p:outputLabel value="Docente" for="@next"/>
-                            <p:autoComplete id="docente" dropdown="true" maxResults="5" value="#{docenteBean.docenteSeleccionado}"
-                                            completeMethod="#{docenteBean.completeDocente}"
+                            <p:autoComplete id="docente" dropdown="true" maxResults="5" value="#{seccionBean.docenteSeleccionado}"
+                                            completeMethod="#{seccionBean.completeDocente}"
                                             var="docente" itemLabel="#{docente.nombre} #{docente.apellido}" itemValue="#{docente}"
                                             converter="#{docenteConverter}" forceSelection="true" scrollHeight="250"/>
                         </div>
@@ -79,13 +79,14 @@
                     <h:panelGroup class="filtros_agregar" >
                         <div class="field col-12 md:col-4">
                             <p:outputLabel value="Aula" for="@next"/>
-                            <p:autoComplete id="aula" dropdown="true" maxResults="5" value="#{aulaBean.aulaSeleccionada}"
-                                            completeMethod="#{aulaBean.completeAula}"
+                            <p:autoComplete id="aula" dropdown="true" maxResults="5" value="#{seccionBean.aulaSeleccionada}"
+                                            completeMethod="#{seccionBean.completeAula}"
                                             var="aula" itemLabel="#{aula.aula}" itemValue="#{aula}"
                                             converter="#{aulaConverter}" forceSelection="true" scrollHeight="250"/>
                         </div>
 
-                        <h:commandButton action="#{seccionBean.obtenerParametros}" value="AGREGAR" class="boton_agregar"/>
+                        <p:growl id="growl" showDetail="true" />
+                        <p:commandButton   actionListener="#{seccionBean.showInfo()}"  update="growl" action="#{seccionBean.obtenerParametros}" value="AGREGAR" class="boton_agregar" styleClass="mr-2" style="width: 10rem"/>
 
                     </h:panelGroup>
 

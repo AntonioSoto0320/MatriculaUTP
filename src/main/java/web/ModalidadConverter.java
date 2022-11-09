@@ -28,7 +28,7 @@ public class ModalidadConverter implements Converter<Modalidad> {
             try {
                 return modalidadService.getModalidadesAsMap().get(Integer.parseInt(value));
             } catch (NumberFormatException e) {
-                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid country."));
+                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Elige una modalidad"));
             }
         } else {
             return null;

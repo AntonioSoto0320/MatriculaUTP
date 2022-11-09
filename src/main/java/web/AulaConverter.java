@@ -27,7 +27,7 @@ public class AulaConverter implements Converter<Aulas> {
             try {
                 return aulaService.getAulasAsMap().get(Integer.parseInt(value));
             } catch (NumberFormatException e) {
-                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid country."));
+                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Elegir una Aula"));
             }
         } else {
             return null;

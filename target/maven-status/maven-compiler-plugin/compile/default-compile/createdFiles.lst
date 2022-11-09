@@ -12,6 +12,7 @@ login\DVDLibraryBean.class
 domain\Cursos.class
 domain\Secciones.class
 login\SessionUtils.class
+web\GrowlBean.class
 domain\Docentes.class
 web\ModalidadConverter.class
 servicio\DocenteServiceImpl.class

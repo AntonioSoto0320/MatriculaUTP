@@ -27,7 +27,7 @@ public class CursoConverter implements Converter<Cursos> {
             try {
                 return cursoService.getCursosAsMap().get(Integer.parseInt(value));
             } catch (NumberFormatException e) {
-                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid country."));
+                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Elige un curso"));
             }
         } else {
             return null;

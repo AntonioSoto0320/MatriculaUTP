@@ -27,7 +27,7 @@ public class DocenteConverter implements Converter<Docentes> {
             try {
                 return docenteService.getDocentesAsMap().get(Integer.parseInt(value));
             } catch (NumberFormatException e) {
-                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid country."));
+                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Elegir un Docente"));
             }
         } else {
             return null;
