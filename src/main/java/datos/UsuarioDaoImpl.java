@@ -69,7 +69,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
                 session.setAttribute("username", user.getUsuario());
                 session.setAttribute("rol", user.getIdRol().getTipoRol());
 
-//                respuesta = "/faces/roles/gestorAcademico/pag_inicio.xhtml?faces-redirect=true";
                 String rolUrl = (String) session.getAttribute("rol");
                 switch (rolUrl) {
                     case "Gestor Academico":
@@ -88,8 +87,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
         }
 
         if (!respuesta.isEmpty()) {
-//            HttpSession session = SessionUtils.getSession();
-//            session.setAttribute("username", usuario.getUsuario());
             System.out.println("entro : " + respuesta);
             return respuesta;
         } else {

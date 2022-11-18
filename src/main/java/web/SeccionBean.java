@@ -4,6 +4,7 @@ import domain.Aulas;
 import domain.Cursos;
 import domain.Docentes;
 import domain.Modalidad;
+import domain.Secciones;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
@@ -17,12 +18,16 @@ import servicio.AulaService;
 import servicio.CursoService;
 import servicio.DocenteService;
 import servicio.ModalidadService;
+import servicio.SeccionService;
 
 @Named("seccionBean")
 @RequestScoped
 public class SeccionBean {
 
     Logger log = LogManager.getRootLogger();
+
+    @Inject
+    private SeccionService seccionService;
 
     @Inject
     private CursoService cursoService;
@@ -40,11 +45,14 @@ public class SeccionBean {
     private Docentes docenteSeleccionado;
     private Cursos cursoSeleccionado;
     private Modalidad modalidadSeleccionado;
+    private Secciones seccion;
 
     List<Modalidad> modalidades;
     List<Docentes> docentes;
     List<Cursos> cursos;
     List<Aulas> aulas;
+
+    List<Secciones> secciones;
 
     public SeccionBean() {
         log.debug("Iniciando el objeto SeccionBean");
@@ -63,6 +71,13 @@ public class SeccionBean {
         this.cursoSeleccionado = new Cursos();
         this.modalidadSeleccionado = new Modalidad();
 
+    }
+
+    //esta por verse
+    public void agregarSeccion() {
+        this.seccionService.registrarSeccion(seccion);
+        this.secciones.add(seccion);
+        this.seccion = null;
     }
 
     public List<Modalidad> completeModalidad(String query) {
@@ -160,14 +175,16 @@ public class SeccionBean {
     public void obtenerParametros() {
 
         try {
-
+            Secciones seccion = new Secciones("Presencial", "activo", aulaSeleccionada, cursoSeleccionado, docenteSeleccionado);
+            this.seccionService.registrarSeccion(seccion);
+            this.secciones.add(seccion);
             System.out.println("Aula: " + aulaSeleccionada.getAula());
             System.out.println("Docente: " + docenteSeleccionado.getNombreCompleto());
             System.out.println("Curso:" + cursoSeleccionado.getNombre());
             System.out.println("Modalidad: " + modalidadSeleccionado.getModalidad());
-
+            this.seccion = null;
+          
         } catch (NullPointerException e) {
-            // e.printStackTrace(System.out);
             showError();
         }
 

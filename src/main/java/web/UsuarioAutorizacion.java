@@ -24,13 +24,10 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/UsuarioAutorizacion")
 public class UsuarioAutorizacion implements Filter {
 
-    private ServletContext context;
     private String rol;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        this.context = filterConfig.getServletContext();
-        this.context.log("AuthenticationFilter initialized");
     }
 
     @Override
@@ -38,35 +35,14 @@ public class UsuarioAutorizacion implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
 
-        //String uri = req.getRequestURI();
-
         HttpSession s = req.getSession();
-       // UsuarioBean usuarioBean = (UsuarioBean) req.getSession().getAttribute("usuarioBean");
 
-         this.rol = (String) s.getAttribute("rol");
-        // System.out.println("rol:" + this.rol);
+        this.rol = (String) s.getAttribute("rol");
         System.out.println("rol: " + this.rol);
 
         if (this.rol != null) {
-            
-//            switch (rol) {
-//                case "Gestor Academico":
-//                    resp.sendRedirect(
-//                            req.getContextPath() + "/roles/gestorAcademico/pag_incio.xhtml");
-//                    break;
-//
-//                case "Docente":
-//                    resp.sendRedirect(
-//                            req.getContextPath() + "/hola.xhtml");
-//                    break;
-//                default:
-//                    System.out.println("redirigio");
-//                    resp.sendRedirect(req.getContextPath());
-//
-//            }
-            
             if (!this.rol.isEmpty()) {
-                
+
                 chain.doFilter(req, resp);
             } else {
                 System.out.println("redirigio");

@@ -74,6 +74,16 @@ public class Secciones implements Serializable {
         this.estado = estado;
     }
 
+    public Secciones(String modalidad, String estado, Aulas idAula, Cursos idCurso, Docentes idDocente) {
+        this.modalidad = modalidad;
+        this.estado = estado;
+        this.idAula = idAula;
+        this.idCurso = idCurso;
+        this.idDocente = idDocente;
+    }
+    
+    
+
     public Integer getIdSecciones() {
         return idSecciones;
     }

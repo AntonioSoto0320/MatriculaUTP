@@ -8,13 +8,14 @@ C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\w
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Cursos.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\UsuarioDao.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\UsuarioService.java
-C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\FilterSecure.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Docentes.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Modalidad.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\GrowlBean.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\ModalidadConverter.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\SeccionService.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Aulas.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\ModalidadDao.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\SeccionDaoImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\UsuarioBean.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\AlumnoBean.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\AulaConverter.java
@@ -24,8 +25,10 @@ C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\s
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\AulaDaoImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\domain\Secciones.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\CursoConverter.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\SeccionServiceImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\AlumnoServiceImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\DocenteService.java
+C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\SeccionDao.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\AlumnoDaoImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\AulaBean.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\ModalidadDaoImpl.java
@@ -48,4 +51,3 @@ C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\d
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\datos\DocenteDaoImpl.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\CursoService.java
 C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\servicio\UsuarioServiceImpl.java
-C:\Users\anton\OneDrive\Documentos\NetBeansProjects\MatriculaUTP\src\main\java\web\LifeCycleListener.java
