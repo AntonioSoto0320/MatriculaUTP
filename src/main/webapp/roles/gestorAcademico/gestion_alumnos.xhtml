@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"    
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Plataforma UTP</title>
+        <link rel="stylesheet" href="../../css/estilos_gestionAlumnos.css"/>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
+
+    </h:head>
+
+    <h:body>
+        <h:panelGrid columns="2" columnClasses="table-col-1,table-col-2" styleClass="table-plataforma" >
+
+            <h:form class="lista-opciones">
+                <h:panelGrid columns="1" styleClass="table-opciones" >
+
+                     <h:graphicImage value="../../img/logoUtp_sinfondo.png" styleClass="logo_utp_plataforma" ></h:graphicImage>
+
+                     <h:graphicImage value="../../img/imagen_perfil.png" class="imagen_perfil"></h:graphicImage>
+                    <h:outputText value="#{session.getAttribute('nombre')}" styleClass="cod" /> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
+                    <h:outputText value="#{session.getAttribute('username')}" styleClass="cod"/> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
+                    <h:outputText value="#{session.getAttribute('rol')}" styleClass="cod"/>
+
+                    <h:commandButton action="pag_inicio" value="PAGINA DE INICIO" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_cursos" value="GESTION DE CURSOS" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_docentes" value="GESTIÓN DE DOCENTES" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_alumnos" value="GESTIÓN DE ALUMNOS" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_aulas" value="GESTIÓN DE AULAS" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_secciones" value="GESTIÓN DE SECCIONES" class="opcion" ></h:commandButton>
+                    <h:commandButton action="#{usuarioBean.logout()}" value="CERRAR SESIÓN" class="opcion logout" ></h:commandButton>
+
+                </h:panelGrid>
+
+            </h:form>
+            <h:form>
+                <h:panelGrid columns="1" styleClass="contenido">
+                    <h1 class="titulo" >Gestión Alumnos</h1>
+
+                    <h:panelGroup class="filtros">
+                        <h2>FILTRAR:</h2>
+
+                        <h:selectOneMenu value="#" class="menu_ciclo">
+                            <f:selectItem itemValue="0" itemLabel= "FACULTAD"/>
+                            <f:selectItem itemValue="1" itemLabel= "INGENIERÍA"/>
+                            <f:selectItem itemValue="2" itemLabel= "HUMANIDADES"/>
+                            <f:selectItem itemValue="3" itemLabel= "PSICOLOGÍA"/>
+
+                        </h:selectOneMenu>
+
+                        <h:selectOneMenu value="#" class="menu_ciclo">
+                            <f:selectItem itemValue="0" itemLabel= "CARRERA"/>
+                            <f:selectItem itemValue="1" itemLabel= "INGENIERÍA DE SISTEMAS E INFORMÁTICA"/>
+                            <f:selectItem itemValue="2" itemLabel= "INGENIERÍA CIVIL"/>
+                            <f:selectItem itemValue="3" itemLabel= "INGENIERÍA INDUSTRIAL"/>
+                            <f:selectItem itemValue="1" itemLabel= "DERECHO Y CIENCIAS POLÍTICAS"/>
+                            <f:selectItem itemValue="2" itemLabel= "ADMINISTRACIÓN DE EMPRESAS"/>
+                            <f:selectItem itemValue="3" itemLabel= "PSICOLOGÍA"/>
+
+                        </h:selectOneMenu>
+
+                        <h:commandButton action="#" value="BUSCAR" class="boton_buscar"></h:commandButton>
+                        <h:commandButton action="#" value="AGREGAR" class="boton_agregar"></h:commandButton>
+
+                    </h:panelGroup>
+
+                </h:panelGrid>
+
+            </h:form>
+
+
+            <p:ajaxStatus style="width: 16px;height: 16px;" id="ajaxStatusPanel">
+                <f:facet name="start">
+                    <h:graphicImage library="images" name="ajaxloading.gif" />
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+
+            </p:ajaxStatus>
+
+            <h:form id="alumnosListForm">
+                <p:growl id="messages" showDetail="true" />
+                <p:messages/>
+
+                <p:dataTable id="alumnosDataTable" value="#{alumnoBean.alumnos}" var="alumno" editable="true" rowKey="#{alumno.idAlumnos}" 
+                             selection="#{alumnoBean.alumnoSeleccionado}" selectionMode="single" >
+
+                    <f:facet name="header">
+                        Listado de Alumnos
+                    </f:facet>
+
+                    <p:column headerText="Id">
+                        <h:outputText value="#{alumno.idAlumnos}" />
+                    </p:column>
+
+                    <p:column headerText="Dni">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{alumno.dni}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{alumno.dni}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{alumno.nombre}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{alumno.nombre}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Apellido">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{alumno.apellido}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{alumno.apellido}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Correo">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{alumno.correo}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{alumno.correo}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Facultad">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{alumno.facultad}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{alumno.facultad}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Carrera">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{alumno.carrera}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{alumno.carrera}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Regresar" action="index" />
+                        <p:spacer height="5px"/>
+                        <p:commandButton value="Agregar" actionListener="#{alumnoBean.reiniciarAlumnoSeleccionado}"
+                                         update=":dialogForm" oncomplete="PF('alumnoDialog').show()" />
+                    </f:facet>
+
+                    <p:column headerText="Opciones" style="width: 50px">
+                        <p:rowEditor/>
+                    </p:column>
+
+                    <p:ajax event="rowEdit" listener="#{alumnoBean.editListener}"/>
+
+                </p:dataTable>
+
+                <p:contextMenu for="alumnosDataTable">
+                    <p:menuitem value="Eliminar" update="alumnosListForm:alumnosDataTable" icon="ui-icon-close" 
+                                actionListener="#{alumnoBean.eliminarAlumno}" />
+                </p:contextMenu>
+
+            </h:form>
+
+            <p:dialog id="alumnoDlg" widgetVar="alumnoDialog" header="Agregar Alumno" modal="true" showEffect="fade" hideEffect="fade" 
+                      resizable="false" >
+                <h:form id="dialogForm">
+                    <p:outputPanel id="aulaDetail" style="text-align: center">
+                        <p:panelGrid id="display" columns="4" columnClasses="label, value" >
+                            <h:outputText value="Dni" />
+                            <h:inputText value="#{alumnoBean.alumnoSeleccionado.dni}" />
+
+                            <h:outputText value="Nombre" />
+                            <h:inputText value="#{alumnoBean.alumnoSeleccionado.nombre}" />
+
+                            <h:outputText value="Apellido" />
+                            <h:inputText value="#{alumnoBean.alumnoSeleccionado.apellido}" />
+
+                            <h:outputText value="Correo" />
+                            <h:inputText value="#{alumnoBean.alumnoSeleccionado.correo}" />
+
+                            <h:outputText value="Facultad" />
+                            <h:inputText value="#{alumnoBean.alumnoSeleccionado.facultad}" />
+
+                            <h:outputText value="Carrera" />
+                            <h:inputText value="#{alumnoBean.alumnoSeleccionado.carrera}" />
+
+                            <f:facet name="footer" >
+                                <p:commandButton value="Agregar" actionListener="#{alumnoBean.agregarAlumno}" 
+                                                 update="display,:alumnosListForm:alumnosDataTable" oncomplete="PF('alumnoDialog').hide();" />
+                            </f:facet>
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </h:form>
+            </p:dialog>
+
+
+        </h:panelGrid>
+
+
+
+    </h:body>
+</html>

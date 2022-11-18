@@ -159,10 +159,6 @@ public class SeccionBean {
 
     public void obtenerParametros() {
 
-        if (aulaSeleccionada.getAula().isEmpty()) {
-            showError();
-            System.out.println("entro al aula");
-        }
         try {
 
             System.out.println("Aula: " + aulaSeleccionada.getAula());
@@ -170,9 +166,9 @@ public class SeccionBean {
             System.out.println("Curso:" + cursoSeleccionado.getNombre());
             System.out.println("Modalidad: " + modalidadSeleccionado.getModalidad());
 
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-
+        } catch (NullPointerException e) {
+            // e.printStackTrace(System.out);
+            showError();
         }
 
     }
@@ -189,7 +185,7 @@ public class SeccionBean {
             showError();
             System.out.println("errorrrrr antonio soto fut");
         }
-        
+
         showInfo();
 
     }
@@ -198,6 +194,7 @@ public class SeccionBean {
         addMessage(FacesMessage.SEVERITY_INFO, "Seccion Creada", "Modalidad:"
                 + modalidadSeleccionado.getModalidad() + "\nCurso:" + cursoSeleccionado.getNombre()
                 + "\nDocente:" + docenteSeleccionado.getNombreCompleto() + "\nAula:" + aulaSeleccionada.getAula());
+
     }
 
     public void showSticky() {

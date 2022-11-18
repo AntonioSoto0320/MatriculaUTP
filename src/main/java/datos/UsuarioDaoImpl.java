@@ -46,7 +46,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     public String usuarioValidation(Usuario usuario) {
         List<Usuario> usuarios = em.createNamedQuery("Usuario.findAll").getResultList();
         System.out.println("Lista de Usuarios:" + usuarios);
-        String respuesta = "index";
+        String respuesta ="";
         for (Usuario user : usuarios) {
             if (user.getUsuario().equals(usuario.getUsuario()) && user.getContraseña().equals(usuario.getContraseña())) {
                 for (Alumnos alumno : user.getAlumnosList()) {
@@ -54,7 +54,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
                     HttpSession session = SessionUtils.getSession();
                     session.setAttribute("username", user.getUsuario());
                     session.setAttribute("nombre", alumno.getNombre().concat(" ").concat(alumno.getApellido()));
-
+                    session.setAttribute("usuario", user);
                 }
 
                 for (Docentes docente : user.getDocentesList()) {
@@ -67,22 +67,39 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
                 HttpSession session = SessionUtils.getSession();
                 session.setAttribute("username", user.getUsuario());
+                session.setAttribute("rol", user.getIdRol().getTipoRol());
 
-                respuesta = "pag_inicio";
+//                respuesta = "/faces/roles/gestorAcademico/pag_inicio.xhtml?faces-redirect=true";
+                String rolUrl = (String) session.getAttribute("rol");
+                switch (rolUrl) {
+                    case "Gestor Academico":
+                        respuesta = "/faces/roles/gestorAcademico/pag_inicio.xhtml?faces-redirect=true";
+                        break;
+
+                    case "Docente":
+                        respuesta = "hola.xhtml";
+                        break;
+
+                    default:
+                        break;
+                }
+
             }
         }
 
-        if (respuesta.equals("pag_inicio")) {
+        if (!respuesta.isEmpty()) {
 //            HttpSession session = SessionUtils.getSession();
 //            session.setAttribute("username", usuario.getUsuario());
+            System.out.println("entro : " + respuesta);
             return respuesta;
         } else {
+            System.out.println("retorno :"+respuesta);
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Incorrecto Username y Password",
                             "Por favor ingrese un username y Password correctos"));
-            return respuesta;
+            return "index.xhtml";
         }
 
     }

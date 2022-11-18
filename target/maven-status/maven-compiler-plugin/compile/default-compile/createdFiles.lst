@@ -4,6 +4,7 @@ web\AulaConverter.class
 web\ConfiguracionBean.class
 domain\Modalidad.class
 datos\AlumnoDao.class
+web\LifeCycleListener.class
 datos\UsuarioDao.class
 datos\AlumnoDaoImpl.class
 servicio\ModalidadService.class
@@ -22,8 +23,10 @@ servicio\AlumnoService.class
 servicio\UsuarioServiceImpl.class
 web\ModalidadBean.class
 web\AulaBean.class
+web\FilterSecure.class
 servicio\CursoService.class
 servicio\DocenteService.class
+web\UsuarioAutorizacion.class
 domain\Usuario.class
 domain\Aulas.class
 login\JAXRSConfiguration.class

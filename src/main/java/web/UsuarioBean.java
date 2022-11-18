@@ -1,9 +1,10 @@
 package web;
 
 import domain.Usuario;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -18,18 +19,24 @@ import servicio.UsuarioService;
  * @author anton
  */
 @Named("usuarioBean")
-@RequestScoped
-public class UsuarioBean {
+@SessionScoped
+public class UsuarioBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Usuario usuario = new Usuario();
-    
-    
+
     Logger log = LogManager.getRootLogger();
 
     @Inject
     private UsuarioService usuarioService;
 
     private Usuario usuarioSeleccionado;
+
+   public boolean isLoggedIn() {
+    return usuario != null;
+  }
+
 
     List<Usuario> usuarios;
 
@@ -49,7 +56,6 @@ public class UsuarioBean {
         Usuario usuario = (Usuario) event.getObject();
         usuarioService.modificarUsuario(usuario);
     }
-    
 
     public Usuario getUsuarioeSeleccionado() {
         return usuarioSeleccionado;
@@ -90,17 +96,15 @@ public class UsuarioBean {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    
 
     public String validarUsuario() {
         return this.usuarioService.usuarioValidation(usuario);
     }
-    
-     public String logout() {
-            HttpSession session = SessionUtils.getSession();
-            session.invalidate();
-            return "index";
+
+    public String logout() {
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        return "/index.xhtml?faces-redirect=true";
     }
 
 }
