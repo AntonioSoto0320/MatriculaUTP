@@ -216,27 +216,37 @@ public class SeccionBean {
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
-            showError();
+            //showError();
         }
 
         return bandera;
     }
 
     public void showInfo() {
-        System.out.println("validar el valor:" + validarObjetosVacios());
-        if (!validarObjetosVacios()) {
-            System.out.println("entro a validar onjetos vacios");
+//        if (!validarObjetosVacios()) {
+//            try {
+//                addMessage(FacesMessage.SEVERITY_INFO, "Seccion Creada", "Modalidad:"
+//                    + modalidadSeleccionado.getModalidad() + "\nCurso:" + cursoSeleccionado.getNombre()
+//                    + "\nDocente:" + docenteSeleccionado.getNombreCompleto() + "\nAula:" + aulaSeleccionada.getAula());
+//            } catch (NullPointerException e) {
+//                e.printStackTrace();
+//                showError();
+//            }
+//        } else {
+//            showError();
+//        }
+
+        if (validarObjetosVacios()) {
+            showError();
+        } else {
             try {
                 addMessage(FacesMessage.SEVERITY_INFO, "Seccion Creada", "Modalidad:"
-                    + modalidadSeleccionado.getModalidad() + "\nCurso:" + cursoSeleccionado.getNombre()
-                    + "\nDocente:" + docenteSeleccionado.getNombreCompleto() + "\nAula:" + aulaSeleccionada.getAula());
+                        + modalidadSeleccionado.getModalidad() + "\nCurso:" + cursoSeleccionado.getNombre()
+                        + "\nDocente:" + docenteSeleccionado.getNombreCompleto() + "\nAula:" + aulaSeleccionada.getAula());
             } catch (NullPointerException e) {
                 e.printStackTrace();
-                showError();
+                //showError();
             }
-        } else {
-            System.out.println("entro al errro de crasheo");
-            showError();
         }
 
     }
@@ -248,7 +258,7 @@ public class SeccionBean {
     }
 
     public void showError() {
-        addMessage(FacesMessage.SEVERITY_ERROR, "Error", "Asignar todas las categorias de la seccion");
+        addMessage(FacesMessage.SEVERITY_ERROR, "Error", "Completar los campos faltantes");
     }
 
 }
