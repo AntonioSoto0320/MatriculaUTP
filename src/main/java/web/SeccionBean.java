@@ -73,13 +73,6 @@ public class SeccionBean {
 
     }
 
-    //esta por verse
-    public void agregarSeccion() {
-        this.seccionService.registrarSeccion(seccion);
-        this.secciones.add(seccion);
-        this.seccion = null;
-    }
-
     public List<Modalidad> completeModalidad(String query) {
         String queryLowerCase = query.toLowerCase();
         List<Modalidad> listadoModalidades = modalidades;
@@ -175,16 +168,17 @@ public class SeccionBean {
     public void obtenerParametros() {
 
         try {
-            Secciones seccion = new Secciones("Presencial", "activo", aulaSeleccionada, cursoSeleccionado, docenteSeleccionado);
+            seccion = new Secciones(modalidadSeleccionado.getModalidad(), "activo", aulaSeleccionada, cursoSeleccionado, docenteSeleccionado);
             this.seccionService.registrarSeccion(seccion);
-            this.secciones.add(seccion);
+            //this.secciones.add(seccion);
             System.out.println("Aula: " + aulaSeleccionada.getAula());
             System.out.println("Docente: " + docenteSeleccionado.getNombreCompleto());
             System.out.println("Curso:" + cursoSeleccionado.getNombre());
             System.out.println("Modalidad: " + modalidadSeleccionado.getModalidad());
-            this.seccion = null;
-          
-        } catch (NullPointerException e) {
+            //this.seccion = null;
+            //showInfo();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
             showError();
         }
 
@@ -199,18 +193,51 @@ public class SeccionBean {
 
         if (aulaSeleccionada.getAula() == null || docenteSeleccionado.getNombreCompleto() == null
                 || cursoSeleccionado.getNombre() == null || modalidadSeleccionado.getModalidad() == null) {
-            showError();
-            System.out.println("errorrrrr antonio soto fut");
+            //showError();
+            System.out.println("errorrrrr");
         }
 
         showInfo();
 
     }
 
+    public boolean validarObjetosVacios() {
+
+        boolean bandera = false;
+
+//        bandera = modalidadSeleccionado.getModalidad().isEmpty();
+//        bandera = cursoSeleccionado.getNombre().isEmpty();
+//        bandera = docenteSeleccionado.getNombreCompleto().isEmpty();
+//        bandera = aulaSeleccionada.getAula().isEmpty();
+        try {
+            if (modalidadSeleccionado.getModalidad() == null || cursoSeleccionado.getNombre() == null
+                    || docenteSeleccionado.getNombreCompleto() == null || aulaSeleccionada.getAula() == null) {
+                bandera = true;
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            showError();
+        }
+
+        return bandera;
+    }
+
     public void showInfo() {
-        addMessage(FacesMessage.SEVERITY_INFO, "Seccion Creada", "Modalidad:"
-                + modalidadSeleccionado.getModalidad() + "\nCurso:" + cursoSeleccionado.getNombre()
-                + "\nDocente:" + docenteSeleccionado.getNombreCompleto() + "\nAula:" + aulaSeleccionada.getAula());
+        System.out.println("validar el valor:" + validarObjetosVacios());
+        if (!validarObjetosVacios()) {
+            System.out.println("entro a validar onjetos vacios");
+            try {
+                addMessage(FacesMessage.SEVERITY_INFO, "Seccion Creada", "Modalidad:"
+                    + modalidadSeleccionado.getModalidad() + "\nCurso:" + cursoSeleccionado.getNombre()
+                    + "\nDocente:" + docenteSeleccionado.getNombreCompleto() + "\nAula:" + aulaSeleccionada.getAula());
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                showError();
+            }
+        } else {
+            System.out.println("entro al errro de crasheo");
+            showError();
+        }
 
     }
 
