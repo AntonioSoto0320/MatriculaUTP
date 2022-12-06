@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -28,15 +30,16 @@ public class UsuarioBean implements Serializable {
 
     Logger log = LogManager.getRootLogger();
 
+    boolean bandera = false;
+
     @Inject
     private UsuarioService usuarioService;
 
     private Usuario usuarioSeleccionado;
 
-   public boolean isLoggedIn() {
-    return usuario != null;
-  }
-
+    public boolean isLoggedIn() {
+        return usuario != null;
+    }
 
     List<Usuario> usuarios;
 
@@ -98,7 +101,13 @@ public class UsuarioBean implements Serializable {
     }
 
     public String validarUsuario() {
+
+        if (this.usuarioService.usuarioValidation(usuario).equals("index.xhtml")) {
+            bandera = true;
+        }
+
         return this.usuarioService.usuarioValidation(usuario);
+
     }
 
     public String logout() {
@@ -106,5 +115,19 @@ public class UsuarioBean implements Serializable {
         session.invalidate();
         return "/index.xhtml?faces-redirect=true";
     }
+
+    public void addMessage(FacesMessage.Severity severity, String summary, String detail) {
+        FacesContext.getCurrentInstance().
+                addMessage(null, new FacesMessage(severity, summary, detail));
+    }
+
+    public void showError() {
+        if (bandera = true) {
+            addMessage(FacesMessage.SEVERITY_ERROR, "Error", "Usuario o Contraseña Incorrectos");
+        }
+
+    }
+
+    
 
 }

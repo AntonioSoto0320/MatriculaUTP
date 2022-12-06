@@ -46,7 +46,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     public String usuarioValidation(Usuario usuario) {
         List<Usuario> usuarios = em.createNamedQuery("Usuario.findAll").getResultList();
         System.out.println("Lista de Usuarios:" + usuarios);
-        String respuesta ="";
+        String respuesta = "";
         for (Usuario user : usuarios) {
             if (user.getUsuario().equals(usuario.getUsuario()) && user.getContraseña().equals(usuario.getContraseña())) {
                 for (Alumnos alumno : user.getAlumnosList()) {
@@ -65,6 +65,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
                 }
 
+                for (Alumnos alumno : user.getAlumnosList()) {
+                    System.out.println("entre a alumno : " + alumno);
+                    HttpSession session = SessionUtils.getSession();
+                    session.setAttribute("username", user.getUsuario());
+                    session.setAttribute("nombre", alumno.getNombre().concat(" ").concat(alumno.getApellido()));
+
+                }
+
                 HttpSession session = SessionUtils.getSession();
                 session.setAttribute("username", user.getUsuario());
                 session.setAttribute("rol", user.getIdRol().getTipoRol());
@@ -76,7 +84,11 @@ public class UsuarioDaoImpl implements UsuarioDao {
                         break;
 
                     case "Docente":
-                        respuesta = "hola.xhtml";
+                        respuesta = "/faces/roles/docente/inicio_docente.xhtml?faces-redirect=true";
+                        break;
+
+                    case "Estudiante":
+                        respuesta = "/faces/roles/estudiante/inicio_alumno.xhtml?faces-redirect=true";
                         break;
 
                     default:
@@ -90,14 +102,11 @@ public class UsuarioDaoImpl implements UsuarioDao {
             System.out.println("entro : " + respuesta);
             return respuesta;
         } else {
-            System.out.println("retorno :"+respuesta);
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Incorrecto Username y Password",
-                            "Por favor ingrese un username y Password correctos"));
+           
             return "index.xhtml";
         }
 
     }
+
+   
 }

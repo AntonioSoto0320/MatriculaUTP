@@ -193,7 +193,7 @@ public class SeccionBean {
 
         if (aulaSeleccionada.getAula() == null || docenteSeleccionado.getNombreCompleto() == null
                 || cursoSeleccionado.getNombre() == null || modalidadSeleccionado.getModalidad() == null) {
-            //showError();
+            
             System.out.println("errorrrrr");
         }
 
@@ -205,10 +205,7 @@ public class SeccionBean {
 
         boolean bandera = false;
 
-//        bandera = modalidadSeleccionado.getModalidad().isEmpty();
-//        bandera = cursoSeleccionado.getNombre().isEmpty();
-//        bandera = docenteSeleccionado.getNombreCompleto().isEmpty();
-//        bandera = aulaSeleccionada.getAula().isEmpty();
+
         try {
             if (modalidadSeleccionado.getModalidad() == null || cursoSeleccionado.getNombre() == null
                     || docenteSeleccionado.getNombreCompleto() == null || aulaSeleccionada.getAula() == null) {
@@ -216,25 +213,13 @@ public class SeccionBean {
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
-            //showError();
+          
         }
 
         return bandera;
     }
 
     public void showInfo() {
-//        if (!validarObjetosVacios()) {
-//            try {
-//                addMessage(FacesMessage.SEVERITY_INFO, "Seccion Creada", "Modalidad:"
-//                    + modalidadSeleccionado.getModalidad() + "\nCurso:" + cursoSeleccionado.getNombre()
-//                    + "\nDocente:" + docenteSeleccionado.getNombreCompleto() + "\nAula:" + aulaSeleccionada.getAula());
-//            } catch (NullPointerException e) {
-//                e.printStackTrace();
-//                showError();
-//            }
-//        } else {
-//            showError();
-//        }
 
         if (validarObjetosVacios()) {
             showError();

@@ -2,8 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
       >
       
     <h:head>
@@ -24,9 +24,11 @@
                 <h:panelGrid styleClass="Celda_Formulario">
                     <h:outputText value="INICIO DE SESIÓN" styleClass="encabezado"/>
                     <h:inputText pt:placeholder="CORREO" value="#{usuarioBean.usuario.usuario}" class="camp" />
-                    <h:inputText pt:placeholder="CONTRASEÑA" value="#{usuarioBean.usuario.contraseña}" class="camp" />
-                                        
-                    <h:commandButton action="#{usuarioBean.validarUsuario}" value="INGRESAR" class="boton"></h:commandButton>
+                    <h:inputSecret pt:placeholder="CONTRASEÑA" value="#{usuarioBean.usuario.contraseña}" class="camp" />
+                       
+                    
+                    <p:growl id="growl" showDetail="true" />
+                    <h:commandButton actionListener="#{usuarioBean.showError()}" action="#{usuarioBean.validarUsuario}" value="INGRESAR" class="boton"></h:commandButton>
                     
                     <h:commandLink class="forgot_password">Recuperar Contraseña</h:commandLink>
                 </h:panelGrid>
