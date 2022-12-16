@@ -7,6 +7,7 @@ import domain.Docentes;
 import domain.Matriculas;
 import domain.Modalidad;
 import domain.Secciones;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
@@ -15,8 +16,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
+import login.SessionUtils;
 import org.apache.logging.log4j.*;
-import org.primefaces.model.LazyDataModel;
 import servicio.AlumnoService;
 import servicio.AulaService;
 import servicio.CursoService;
@@ -68,6 +70,10 @@ public class SeccionBean {
     List<Matriculas> matriculas;
     List<Alumnos> alumnos;
     List<Secciones> secciones;
+    List<Secciones> seccionesPrueba;
+    List<Matriculas> matriculasprueba;
+    
+    Matriculas prueba;
 
     public SeccionBean() {
         log.debug("Iniciando el objeto SeccionBean");
@@ -76,21 +82,27 @@ public class SeccionBean {
 
     @PostConstruct
     public void inicializar() {
+        
+       
         this.modalidades = modalidadService.listarModalidades();
         this.docentes = docenteService.listarDocentes();
         this.cursos = cursoService.listarCursos();
         this.aulas = aulaService.listarAulas();
         this.matriculas = matriculaService.listarMatriculas();
+        this.secciones = seccionService.listarSecciones();
         this.alumnos = alumnoService.listarUsuarios();
-
+       
         this.aulaSeleccionada = new Aulas();
         this.docenteSeleccionado = new Docentes();
         this.cursoSeleccionado = new Cursos();
         this.modalidadSeleccionado = new Modalidad();
         this.matricula = new Matriculas();
+
         this.alumno = new Alumnos();
-        this.secciones = seccionService.listarSecciones();
         this.disable = true;
+        
+        this.matriculasprueba = listadoMatriculasAlumno(this.matriculas);
+        
 
     }
 
@@ -101,12 +113,32 @@ public class SeccionBean {
         return listadoModalidades.stream().filter(t -> t.getModalidad().toLowerCase().contains(queryLowerCase)).collect(Collectors.toList());
     }
 
+    public List<Secciones> getSeccionesPrueba() {
+        return seccionesPrueba;
+    }
+
+    public void setSeccionesPrueba(List<Secciones> seccionesPrueba) {
+        this.seccionesPrueba = seccionesPrueba;
+    }
+    
+    
+
     public List<Docentes> completeDocente(String query) {
         String queryLowerCase = query.toLowerCase();
         List<Docentes> listadoDocentes = docentes;
 
         return listadoDocentes.stream().filter(t -> t.getNombreCompleto().toLowerCase().contains(queryLowerCase)).collect(Collectors.toList());
     }
+
+    public List<Matriculas> getMatriculasprueba() {
+        return matriculasprueba;
+    }
+
+    public void setMatriculasprueba(List<Matriculas> matriculasprueba) {
+        this.matriculasprueba = matriculasprueba;
+    }
+    
+    
 
     public List<Aulas> completeAula(String query) {
         String queryLowerCase = query.toLowerCase();
@@ -194,6 +226,37 @@ public class SeccionBean {
         this.secciones = secciones;
     }
 
+    public List<Matriculas> listadoMatriculasAlumno(List<Matriculas> matriculas) {
+        HttpSession session = SessionUtils.getSession();
+
+        int idAlum = (int) session.getAttribute("idAlum");
+        List<Matriculas> matriculasAlumno = new ArrayList<>();
+
+        List<Matriculas> matriculasA = matriculas;
+
+        for (Matriculas matricula : matriculasA) {
+
+            if (matricula.getIdalumM().getIdAlumnos() == idAlum) {
+
+                
+
+                matriculasAlumno.add(matricula);
+
+            }
+
+        }
+        
+        return matriculasAlumno;
+
+    }
+    
+  
+    
+    
+
+    
+    
+    
     public void obtenerParametros() {
 
         try {
@@ -283,7 +346,7 @@ public class SeccionBean {
 
             addMessage("Confirmacion", "Curso Matriculado: " + secciones.getIdCurso().getNombre());
             desactivarBoton();
-            
+
         }
     }
 
@@ -302,6 +365,22 @@ public class SeccionBean {
     public void addMessage(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public Matriculas getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(Matriculas matricula) {
+        this.matricula = matricula;
+    }
+
+    public List<Matriculas> getMatriculas() {
+        return matriculas;
+    }
+
+    public void setMatriculas(List<Matriculas> matriculas) {
+        this.matriculas = matriculas;
     }
 
 }

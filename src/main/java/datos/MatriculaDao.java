@@ -9,7 +9,7 @@ public interface MatriculaDao {
     
     public Matriculas findMatriculaById(Matriculas matriculas);
     
-    public Matriculas findMatriculaAlumnoById(Matriculas matriculas);
+    public List<Matriculas> findMatriculaAlumnoById(Matriculas matriculas);
     
     public void insertMatricula(Matriculas matriculas);
     

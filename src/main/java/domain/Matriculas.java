@@ -28,7 +28,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Matriculas.findAll", query = "SELECT m FROM Matriculas m"),
-    @NamedQuery(name = "Matriculas.findByIdMatriculas", query = "SELECT m FROM Matriculas m WHERE m.idMatriculas = :idMatriculas")})
+    @NamedQuery(name = "Matriculas.findByIdMatriculas", query = "SELECT m FROM Matriculas m WHERE m.idMatriculas = :idMatriculas"),
+@NamedQuery(name = "Matriculas.findByIdMatriculasAlumno", query = "SELECT m FROM Matriculas m WHERE m.idalumM = :idalumM")
+
+
+})
 public class Matriculas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,11 +51,14 @@ public class Matriculas implements Serializable {
     public Matriculas() {
     }
 
+    public Matriculas(Alumnos idalumM) {
+        this.idalumM = idalumM;
+    }
+
     public Matriculas(Alumnos idalumM, Secciones idseccioM) {
         this.idalumM = idalumM;
         this.idseccioM = idseccioM;
     }
-    
 
     public Matriculas(Integer idMatriculas) {
         this.idMatriculas = idMatriculas;
@@ -103,7 +110,8 @@ public class Matriculas implements Serializable {
 
     @Override
     public String toString() {
-        return "domain.Matriculas[ idMatriculas=" + idMatriculas + " ]";
+        return "Matriculas{" + "idMatriculas=" + idMatriculas + ", idalumM=" + idalumM + ", idseccioM=" + idseccioM + '}';
     }
+
     
 }

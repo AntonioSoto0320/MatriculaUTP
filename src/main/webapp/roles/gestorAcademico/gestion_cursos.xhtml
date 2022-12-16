@@ -4,29 +4,31 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-          
+      xmlns:p="http://primefaces.org/ui"        
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-      
+
     <h:head>
         <title>Plataforma UTP</title>
-        <link rel="stylesheet" href="../../css/estilos_gestionCursos.css"/>
+        <link rel="stylesheet" href="../../css/estilos_plataforma.css"/>
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
-            
+        <link rel='stylesheet' type='text/css' href='https://unpkg.com/primeflex@3.1.2/primeflex.css' ></link>
+        <link rel='stylesheet' type='text/css' href='https://unpkg.com/primeflex/themes/saga-blue.css'></link>
+
     </h:head>
-    
+
     <h:body>
         <h:panelGrid columns="2" columnClasses="table-col-1,table-col-2" styleClass="table-plataforma" >
-            
+
             <h:form class="lista-opciones">
                 <h:panelGrid columns="1" styleClass="table-opciones" >
-                
+
                     <h:graphicImage value="../../img/logoUtp_sinfondo.png" styleClass="logo_utp_plataforma" ></h:graphicImage>
-                    
+
                     <h:graphicImage value="../../img/imagen_perfil.png" class="imagen_perfil"></h:graphicImage>
                     <h:outputText value="#{session.getAttribute('nombre')}" styleClass="cod" /> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
                     <h:outputText value="#{session.getAttribute('username')}" styleClass="cod"/> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
                     <h:outputText value="#{session.getAttribute('rol')}" styleClass="cod"/>
-                    
+
                     <h:commandButton action="pag_inicio" value="PAGINA DE INICIO" class="opcion" ></h:commandButton>
                     <h:commandButton action="gestion_cursos" value="GESTION DE CURSOS" class="opcion" ></h:commandButton>
                     <h:commandButton action="gestion_docentes" value="GESTIÓN DE DOCENTES" class="opcion" ></h:commandButton>
@@ -34,68 +36,166 @@
                     <h:commandButton action="gestion_aulas" value="GESTIÓN DE AULAS" class="opcion" ></h:commandButton>
                     <h:commandButton action="gestion_secciones" value="GESTIÓN DE SECCIONES" class="opcion" ></h:commandButton>
                     <h:commandButton action="#{usuarioBean.logout()}" value="CERRAR SESIÓN" class="opcion logout" ></h:commandButton>
-                    
+
                 </h:panelGrid>
-                
+
             </h:form>
-            <h:form>
-                <h:panelGrid columns="1" styleClass="contenido">
+
+            <h:panelGrid columns="1" styleClass="contenido">
                 <h1 class="titulo" >Gestión Cursos</h1>
-                
-                
-                <h:panelGroup class="filtros">
-                    <h2>FILTRAR:</h2>
-                   
-                    <h:selectOneMenu value="#" class="menu_ciclo">
-                        <f:selectItem itemValue="0" itemLabel= "CICLO ACADÉMICO"/>
-                        <f:selectItem itemValue="1" itemLabel= "1"/>
-                        <f:selectItem itemValue="2" itemLabel= "2"/>
-                        <f:selectItem itemValue="3" itemLabel= "3"/>
-                        <f:selectItem itemValue="4" itemLabel= "4"/>
-                        <f:selectItem itemValue="5" itemLabel= "5"/>
-                        <f:selectItem itemValue="6" itemLabel= "6"/>
-                        <f:selectItem itemValue="7" itemLabel= "7"/>
-                        <f:selectItem itemValue="8" itemLabel= "8"/>
-                        <f:selectItem itemValue="9" itemLabel= "9"/>
-                        <f:selectItem itemValue="10" itemLabel= "10"/>
-                    </h:selectOneMenu>
-                    
-                    <h:selectOneMenu value="#" class="menu_ciclo">
-                        <f:selectItem itemValue="0" itemLabel= "FACULTAD"/>
-                        <f:selectItem itemValue="1" itemLabel= "INGENIERÍA"/>
-                        <f:selectItem itemValue="2" itemLabel= "HUMANIDADES"/>
-                        <f:selectItem itemValue="3" itemLabel= "PSICOLOGÍA"/>
-                        
-                    </h:selectOneMenu>
-                    
-                    <h:selectOneMenu value="#" class="menu_ciclo">
-                        <f:selectItem itemValue="0" itemLabel= "CARRERA"/>
-                        <f:selectItem itemValue="1" itemLabel= "INGENIERÍA DE SISTEMAS E INFORMÁTICA"/>
-                        <f:selectItem itemValue="2" itemLabel= "INGENIERÍA CIVIL"/>
-                        <f:selectItem itemValue="3" itemLabel= "INGENIERÍA INDUSTRIAL"/>
-                        <f:selectItem itemValue="1" itemLabel= "DERECHO Y CIENCIAS POLÍTICAS"/>
-                        <f:selectItem itemValue="2" itemLabel= "ADMINISTRACIÓN DE EMPRESAS"/>
-                        <f:selectItem itemValue="3" itemLabel= "PSICOLOGÍA"/>
-                        
-                    </h:selectOneMenu>
-                    
-                    <h:commandButton action="#" value="BUSCAR" class="boton_buscar"></h:commandButton>
-                    <h:commandButton action="#" value="AGREGAR" class="boton_agregar"></h:commandButton>
-                    
-                </h:panelGroup>
-                
-                
-                
-                
-                </h:panelGrid>
-                
-            </h:form>
-            
-            
-            
+
+                <p:ajaxStatus style="width: 16px;height: 16px;" id="ajaxStatusPanel">
+                    <f:facet name="start">
+                        <h:graphicImage library="images" name="ajaxloading.gif" />
+                    </f:facet>
+
+                    <f:facet name="complete">
+                        <h:outputText value="" />
+                    </f:facet>
+
+                </p:ajaxStatus>
+
+                <h:form id="cursoListForm">
+                    <p:growl id="messages" showDetail="true" />
+                    <p:messages/>
+
+                    <p:dataTable id="cursoDataTable" value="#{cursoBean.cursos}" var="curso" editable="true" rowKey="#{curso.idCursos}" 
+                                 selection="#{cursoBean.cursoSeleccionado}" selectionMode="single" >
+
+                        <f:facet name="header">
+                            Listado de Cursos
+                        </f:facet>
+
+                        <p:column headerText="Id">
+                            <h:outputText value="#{curso.idCursos}" />
+                        </p:column>
+
+                        <p:column headerText="Nombre">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{curso.nombre}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{curso.nombre}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Ciclo">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{curso.ciclo}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{curso.ciclo}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Creditos">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{curso.creditos}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{curso.creditos}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Tipo Curso">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{curso.tipoCurso}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{curso.tipoCurso}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Facultad">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{curso.facultad}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{curso.facultad}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Carrera">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{curso.carrera}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{curso.carrera}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Regresar" action="index" />
+                            <p:spacer height="5px"/>
+                            <p:commandButton value="Agregar" actionListener="#{cursoBean.reiniciarCursoSeleccionado()}"
+                                             update=":dialogForm" oncomplete="PF('cursoDialog').show()" />
+                        </f:facet>
+
+                        <p:column headerText="Opciones" style="width: 50px">
+                            <p:rowEditor/>
+                        </p:column>
+
+                        <p:ajax event="rowEdit" listener="#{cursoBean.editListener}"/>
+
+                    </p:dataTable>
+
+                    <p:contextMenu for="cursoDataTable">
+                        <p:menuitem value="Eliminar" update="cursoListForm:cursoDataTable" icon="ui-icon-close" 
+                                    actionListener="#{cursoBean.eliminarCurso()}" />
+                    </p:contextMenu>
+
+                </h:form>
+
+                <p:dialog id="cursoDlg" widgetVar="cursoDialog" header="Agregar Curso" modal="true" showEffect="fade" hideEffect="fade" 
+                          resizable="false" >
+                    <h:form id="dialogForm">
+                        <p:outputPanel id="aulaDetail" style="text-align: center">
+                            <p:panelGrid id="display" columns="4" columnClasses="label, value" >
+                                <h:outputText value="Nombre" />
+                                <h:inputText value="#{cursoBean.cursoSeleccionado.nombre}" />
+
+                                <h:outputText value="Ciclo" />
+                                <h:inputText value="#{cursoBean.cursoSeleccionado.ciclo}" />
+
+                                <h:outputText value="Creditos" />
+                                <h:inputText value="#{cursoBean.cursoSeleccionado.creditos}" />
+
+                                <h:outputText value="Tipo Curso" />
+                                <h:inputText value="#{cursoBean.cursoSeleccionado.tipoCurso}" />
+
+                                <h:outputText value="Facultad" />
+                                <h:inputText value="#{cursoBean.cursoSeleccionado.facultad}" />
+
+                                <h:outputText value="Carrera" />
+                                <h:inputText value="#{cursoBean.cursoSeleccionado.carrera}" />
+
+                                <f:facet name="footer" >
+                                    <p:commandButton value="Agregar" actionListener="#{cursoBean.agregarCurso()}" 
+                                                     update="display,:cursoListForm:cursoDataTable" oncomplete="PF('cursoDialog').hide();" />
+                                </f:facet>
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </h:form>
+                </p:dialog>
+
+            </h:panelGrid>
+
+
         </h:panelGrid>
-        
-        
-        
+
+
+
     </h:body>
 </html>

@@ -56,6 +56,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
                     session.setAttribute("nombre", alumno.getNombre().concat(" ").concat(alumno.getApellido()));
                     session.setAttribute("usuario", user);
                     session.setAttribute("Alum", alumno);
+                    session.setAttribute("idAlum", alumno.getIdAlumnos());
                 }
 
                 for (Docentes docente : user.getDocentesList()) {
@@ -63,7 +64,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
                     HttpSession session = SessionUtils.getSession();
                     session.setAttribute("username", user.getUsuario());
                     session.setAttribute("nombre", docente.getNombre().concat(" ").concat(docente.getApellido()));
-
+                    session.setAttribute("idDocente", docente.getIdDocentes());
                 }
 
                 for (Alumnos alumno : user.getAlumnosList()) {
@@ -76,7 +77,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
                 HttpSession session = SessionUtils.getSession();
                 session.setAttribute("username", user.getUsuario());
-                
+
                 session.setAttribute("rol", user.getIdRol().getTipoRol());
 
                 String rolUrl = (String) session.getAttribute("rol");
@@ -104,11 +105,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
             System.out.println("entro : " + respuesta);
             return respuesta;
         } else {
-           
+
             return "index.xhtml";
         }
 
     }
 
-   
 }

@@ -5,23 +5,21 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cursos.findByCreditos", query = "SELECT c FROM Cursos c WHERE c.creditos = :creditos"),
     @NamedQuery(name = "Cursos.findByTipoCurso", query = "SELECT c FROM Cursos c WHERE c.tipoCurso = :tipoCurso"),
     @NamedQuery(name = "Cursos.findByFacultad", query = "SELECT c FROM Cursos c WHERE c.facultad = :facultad"),
-    @NamedQuery(name = "Cursos.findByCarrera", query = "SELECT c FROM Cursos c WHERE c.carrera = :carrera")})
+    @NamedQuery(name = "Cursos.findByCarrera", query = "SELECT c FROM Cursos c WHERE c.carrera = :carrera"),
+    @NamedQuery(name = "Cursos.findByHorario", query = "SELECT c FROM Cursos c WHERE c.horario = :horario")})
 public class Cursos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -75,8 +74,9 @@ public class Cursos implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "carrera")
     private String carrera;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCurso", fetch = FetchType.LAZY)
-    private List<Secciones> seccionesList;
+    @Column(name = "horario")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date horario;
 
     public Cursos() {
     }
@@ -151,13 +151,12 @@ public class Cursos implements Serializable {
         this.carrera = carrera;
     }
 
-    @XmlTransient
-    public List<Secciones> getSeccionesList() {
-        return seccionesList;
+    public Date getHorario() {
+        return horario;
     }
 
-    public void setSeccionesList(List<Secciones> seccionesList) {
-        this.seccionesList = seccionesList;
+    public void setHorario(Date horario) {
+        this.horario = horario;
     }
 
     @Override
@@ -182,7 +181,7 @@ public class Cursos implements Serializable {
 
     @Override
     public String toString() {
-        return "com.utp.matriculate.fffffffffffffffffffffffffffff.Cursos[ idCursos=" + idCursos + " ]";
+        return "com.utp.matriculate.hh.Cursos[ idCursos=" + idCursos + " ]";
     }
     
 }

@@ -16,6 +16,7 @@ domain\Cursos.class
 domain\Secciones.class
 login\SessionUtils.class
 web\GrowlBean.class
+web\DocenteSeccionBean.class
 servicio\SeccionServiceImpl.class
 domain\Docentes.class
 web\ModalidadConverter.class

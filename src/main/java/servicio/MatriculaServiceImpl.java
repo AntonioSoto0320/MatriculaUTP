@@ -24,7 +24,7 @@ public class MatriculaServiceImpl implements MatriculaService {
     }
     
     @Override
-    public Matriculas encontrarMatriculaAlumnoPorId(Matriculas matriculas) {
+    public List<Matriculas> encontrarMatriculaAlumnoPorId(Matriculas matriculas) {
         return matriculaDao.findMatriculaAlumnoById(matriculas);
     }
     

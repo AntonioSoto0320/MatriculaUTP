@@ -16,6 +16,6 @@ public interface MatriculaService {
     
     public void eliminarMatricula(Matriculas matriculas);
     
-    public Matriculas encontrarMatriculaAlumnoPorId(Matriculas matriculas);
+    public List<Matriculas> encontrarMatriculaAlumnoPorId(Matriculas matriculas);
     
 }

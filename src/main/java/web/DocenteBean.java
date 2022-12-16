@@ -13,6 +13,7 @@ import org.apache.logging.log4j.*;
 import org.primefaces.event.RowEditEvent;
 import servicio.DocenteService;
 
+
 @Named("docenteBean")
 @RequestScoped
 public class DocenteBean {
@@ -26,6 +27,7 @@ public class DocenteBean {
     private DocenteService docenteService;
 
     private Docentes docenteSeleccionado;
+    
 
 
     public DocenteBean() {
@@ -38,6 +40,8 @@ public class DocenteBean {
         this.docentes = docenteService.listarDocentes();
         log.debug("docentes recuperados en ManagedBean:" + this.docentes);
         this.docenteSeleccionado = new Docentes();
+        
+        
     }
 
     public List<Docentes> completeDocente(String query) {
@@ -94,5 +98,6 @@ public class DocenteBean {
         }
         return docentesAsMap;
     }
-
+    
+      
 }

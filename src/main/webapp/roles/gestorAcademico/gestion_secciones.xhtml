@@ -9,10 +9,12 @@
 
     <h:head>
         <title>Plataforma UTP</title>
-        <link rel="stylesheet" href="../../css/estilos_gestionSecciones.css"/>
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
+        
+        
         <link rel='stylesheet' type='text/css' href='https://unpkg.com/primeflex@3.1.2/primeflex.css' ></link>
         <link rel='stylesheet' type='text/css' href='https://unpkg.com/primeflex/themes/saga-blue.css'></link>
+        <link rel="stylesheet" href="../../css/estilos_plataforma.css"/>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
 
     </h:head>
 
@@ -92,47 +94,7 @@
 
                     </h:panelGroup>
 
-                    <h:panelGroup class="filtros">
-                        <h2 class="filtrar" >FILTRAR:</h2>
-
-
-
-                        <h:selectOneMenu value="#" class="menu_ciclo">
-                            <f:selectItem itemValue="0" itemLabel= "FACULTAD"/>
-                            <f:selectItem itemValue="1" itemLabel= "INGENIERÍA"/>
-                            <f:selectItem itemValue="2" itemLabel= "HUMANIDADES"/>
-                            <f:selectItem itemValue="3" itemLabel= "PSICOLOGÍA"/>
-
-                        </h:selectOneMenu>
-
-                        <h:selectOneMenu value="#" class="menu_ciclo">
-                            <f:selectItem itemValue="0" itemLabel= "CARRERA"/>
-                            <f:selectItem itemValue="1" itemLabel= "INGENIERÍA DE SISTEMAS E INFORMÁTICA"/>
-                            <f:selectItem itemValue="2" itemLabel= "INGENIERÍA CIVIL"/>
-                            <f:selectItem itemValue="3" itemLabel= "INGENIERÍA INDUSTRIAL"/>
-                            <f:selectItem itemValue="1" itemLabel= "DERECHO Y CIENCIAS POLÍTICAS"/>
-                            <f:selectItem itemValue="2" itemLabel= "ADMINISTRACIÓN DE EMPRESAS"/>
-                            <f:selectItem itemValue="3" itemLabel= "PSICOLOGÍA"/>
-
-                        </h:selectOneMenu>
-
-                        <h:selectOneMenu value="#" class="menu_ciclo">
-                            <f:selectItem itemValue="0" itemLabel= "MODALIDAD"/>
-                            <f:selectItem itemValue="1" itemLabel= "PRESENCIAL"/>
-                            <f:selectItem itemValue="2" itemLabel= "REMOTO"/>
-                            <f:selectItem itemValue="3" itemLabel= "VIRTUAL"/>
-
-                        </h:selectOneMenu>
-
-
-                        <h:commandButton action="#" value="BUSCAR" class="boton_buscar"></h:commandButton>
-
-
-                    </h:panelGroup>
-
-
-
-
+                   
                 </h:panelGrid>
 
             </h:form>

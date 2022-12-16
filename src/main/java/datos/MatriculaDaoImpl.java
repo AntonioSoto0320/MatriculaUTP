@@ -20,12 +20,14 @@ public class MatriculaDaoImpl implements MatriculaDao {
     public Matriculas findMatriculaById(Matriculas matriculas) {
         return em.find(Matriculas.class, matriculas.getIdMatriculas());
     }
-    
-     @Override
-    public Matriculas findMatriculaAlumnoById(Matriculas matriculas) {
-        return em.find(Matriculas.class, matriculas.getIdalumM());
-    }
 
+    @Override
+    public List<Matriculas> findMatriculaAlumnoById(Matriculas matriculas) {
+        return (List<Matriculas>) em.find(Matriculas.class, matriculas.getIdalumM());
+    
+    }
+    
+    
 
     @Override
     public void insertMatricula(Matriculas matriculas) {
@@ -42,6 +44,4 @@ public class MatriculaDaoImpl implements MatriculaDao {
         em.remove(em.merge(matriculas));
     }
 
-
-    
 }
