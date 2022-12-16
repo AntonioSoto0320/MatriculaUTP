@@ -6,7 +6,7 @@ import domain.Secciones;
 
 @Local
 public interface SeccionService {
-      public List<Secciones> listarSecciones();
+     public List<Secciones> listarSecciones();
     
     public Secciones encontrarSeccionPorId(Secciones secciones);
     

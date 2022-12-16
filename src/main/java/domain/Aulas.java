@@ -38,12 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Aulas.findByTipo", query = "SELECT a FROM Aulas a WHERE a.tipo = :tipo")})
 public class Aulas implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_aulas")
-    private Integer idAulas;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -63,6 +57,13 @@ public class Aulas implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "tipo")
     private String tipo;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_aulas")
+    private Integer idAulas;
     @OneToMany(mappedBy = "idAula", fetch = FetchType.LAZY)
     private List<Secciones> seccionesList;
 
@@ -89,37 +90,6 @@ public class Aulas implements Serializable {
         this.idAulas = idAulas;
     }
 
-    public String getPabellon() {
-        return pabellon;
-    }
-
-    public void setPabellon(String pabellon) {
-        this.pabellon = pabellon;
-    }
-
-    public int getPiso() {
-        return piso;
-    }
-
-    public void setPiso(int piso) {
-        this.piso = piso;
-    }
-
-    public String getAula() {
-        return aula;
-    }
-
-    public void setAula(String aula) {
-        this.aula = aula;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
 
     @XmlTransient
     public List<Secciones> getSeccionesList() {
@@ -153,6 +123,38 @@ public class Aulas implements Serializable {
     @Override
     public String toString() {
         return "com.utp.matriculate.fffffffffffffffffffffffffffff.Aulas[ idAulas=" + idAulas + " ]";
+    }
+
+    public String getPabellon() {
+        return pabellon;
+    }
+
+    public void setPabellon(String pabellon) {
+        this.pabellon = pabellon;
+    }
+
+    public int getPiso() {
+        return piso;
+    }
+
+    public void setPiso(int piso) {
+        this.piso = piso;
+    }
+
+    public String getAula() {
+        return aula;
+    }
+
+    public void setAula(String aula) {
+        this.aula = aula;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
 }

@@ -44,19 +44,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Docentes.findByCarrera", query = "SELECT d FROM Docentes d WHERE d.carrera = :carrera")})
 public class Docentes implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_docentes")
-    private Integer idDocentes;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "dni")
     private String dni;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 255)
     @Column(name = "nombre")
     private String nombre;
@@ -85,6 +79,12 @@ public class Docentes implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "carrera")
     private String carrera;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_docentes")
+    private Integer idDocentes;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario idUsuario;
@@ -117,29 +117,6 @@ public class Docentes implements Serializable {
         this.idDocentes = idDocentes;
     }
 
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
 
     public String getTipoDocente() {
         return tipoDocente;
@@ -149,29 +126,6 @@ public class Docentes implements Serializable {
         this.tipoDocente = tipoDocente;
     }
 
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getFacultad() {
-        return facultad;
-    }
-
-    public void setFacultad(String facultad) {
-        this.facultad = facultad;
-    }
-
-    public String getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(String carrera) {
-        this.carrera = carrera;
-    }
 
     public Usuario getIdUsuario() {
         return idUsuario;
@@ -217,6 +171,55 @@ public class Docentes implements Serializable {
     @Override
     public String toString() {
         return "com.utp.matriculate.fffffffffffffffffffffffffffff.Docentes[ idDocentes=" + idDocentes + " ]";
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getFacultad() {
+        return facultad;
+    }
+
+    public void setFacultad(String facultad) {
+        this.facultad = facultad;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
     }
     
 }

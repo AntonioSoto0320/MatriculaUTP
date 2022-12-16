@@ -1,8 +1,10 @@
 package web;
 
+import domain.Alumnos;
 import domain.Aulas;
 import domain.Cursos;
 import domain.Docentes;
+import domain.Matriculas;
 import domain.Modalidad;
 import domain.Secciones;
 import java.util.List;
@@ -14,9 +16,12 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.apache.logging.log4j.*;
+import org.primefaces.model.LazyDataModel;
+import servicio.AlumnoService;
 import servicio.AulaService;
 import servicio.CursoService;
 import servicio.DocenteService;
+import servicio.MatriculaService;
 import servicio.ModalidadService;
 import servicio.SeccionService;
 
@@ -41,17 +46,27 @@ public class SeccionBean {
     @Inject
     private AulaService aulaService;
 
+    @Inject
+    private AlumnoService alumnoService;
+
+    @Inject
+    private MatriculaService matriculaService;
+
     private Aulas aulaSeleccionada;
     private Docentes docenteSeleccionado;
     private Cursos cursoSeleccionado;
     private Modalidad modalidadSeleccionado;
     private Secciones seccion;
+    private Alumnos alumno;
+    private Matriculas matricula;
+    private boolean disable;
 
     List<Modalidad> modalidades;
     List<Docentes> docentes;
     List<Cursos> cursos;
     List<Aulas> aulas;
-
+    List<Matriculas> matriculas;
+    List<Alumnos> alumnos;
     List<Secciones> secciones;
 
     public SeccionBean() {
@@ -65,11 +80,17 @@ public class SeccionBean {
         this.docentes = docenteService.listarDocentes();
         this.cursos = cursoService.listarCursos();
         this.aulas = aulaService.listarAulas();
+        this.matriculas = matriculaService.listarMatriculas();
+        this.alumnos = alumnoService.listarUsuarios();
 
         this.aulaSeleccionada = new Aulas();
         this.docenteSeleccionado = new Docentes();
         this.cursoSeleccionado = new Cursos();
         this.modalidadSeleccionado = new Modalidad();
+        this.matricula = new Matriculas();
+        this.alumno = new Alumnos();
+        this.secciones = seccionService.listarSecciones();
+        this.disable = true;
 
     }
 
@@ -165,6 +186,14 @@ public class SeccionBean {
         this.aulas = aulas;
     }
 
+    public List<Secciones> getSecciones() {
+        return secciones;
+    }
+
+    public void setSecciones(List<Secciones> secciones) {
+        this.secciones = secciones;
+    }
+
     public void obtenerParametros() {
 
         try {
@@ -193,7 +222,7 @@ public class SeccionBean {
 
         if (aulaSeleccionada.getAula() == null || docenteSeleccionado.getNombreCompleto() == null
                 || cursoSeleccionado.getNombre() == null || modalidadSeleccionado.getModalidad() == null) {
-            
+
             System.out.println("errorrrrr");
         }
 
@@ -205,7 +234,6 @@ public class SeccionBean {
 
         boolean bandera = false;
 
-
         try {
             if (modalidadSeleccionado.getModalidad() == null || cursoSeleccionado.getNombre() == null
                     || docenteSeleccionado.getNombreCompleto() == null || aulaSeleccionada.getAula() == null) {
@@ -213,7 +241,7 @@ public class SeccionBean {
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
-          
+
         }
 
         return bandera;
@@ -244,6 +272,36 @@ public class SeccionBean {
 
     public void showError() {
         addMessage(FacesMessage.SEVERITY_ERROR, "Error", "Completar los campos faltantes");
+    }
+
+    public void confirm(Secciones secciones, Alumnos idAlumnos) {
+
+        if (secciones != null && idAlumnos != null) {
+            Matriculas matriculaInscripcion = new Matriculas(idAlumnos, secciones);
+
+            matriculaService.registrarMatricula(matriculaInscripcion);
+
+            addMessage("Confirmacion", "Curso Matriculado: " + secciones.getIdCurso().getNombre());
+            desactivarBoton();
+            
+        }
+    }
+
+    public void desactivarBoton() {
+        disable = false;
+    }
+
+    public boolean isDisable() {
+        return disable;
+    }
+
+    public void setDisable(boolean disable) {
+        this.disable = disable;
+    }
+
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
 }

@@ -5,7 +5,9 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,10 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -39,19 +43,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Alumnos.findByCarrera", query = "SELECT a FROM Alumnos a WHERE a.carrera = :carrera")})
 public class Alumnos implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_alumnos")
-    private Integer idAlumnos;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "dni")
     private String dni;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 100)
     @Column(name = "nombre")
     private String nombre;
@@ -75,6 +73,14 @@ public class Alumnos implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "carrera")
     private String carrera;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idalumM", fetch = FetchType.LAZY)
+    private List<Matriculas> matriculasList;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_alumnos")
+    private Integer idAlumnos;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario idUsuario;
@@ -102,6 +108,40 @@ public class Alumnos implements Serializable {
 
     public void setIdAlumnos(Integer idAlumnos) {
         this.idAlumnos = idAlumnos;
+    }
+
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idAlumnos != null ? idAlumnos.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Alumnos)) {
+            return false;
+        }
+        Alumnos other = (Alumnos) object;
+        if ((this.idAlumnos == null && other.idAlumnos != null) || (this.idAlumnos != null && !this.idAlumnos.equals(other.idAlumnos))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.utp.matriculate.fffffffffffffffffffffffffffff.Alumnos[ idAlumnos=" + idAlumnos + " ]";
     }
 
     public String getDni() {
@@ -152,37 +192,13 @@ public class Alumnos implements Serializable {
         this.carrera = carrera;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    @XmlTransient
+    public List<Matriculas> getMatriculasList() {
+        return matriculasList;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idAlumnos != null ? idAlumnos.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Alumnos)) {
-            return false;
-        }
-        Alumnos other = (Alumnos) object;
-        if ((this.idAlumnos == null && other.idAlumnos != null) || (this.idAlumnos != null && !this.idAlumnos.equals(other.idAlumnos))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.utp.matriculate.fffffffffffffffffffffffffffff.Alumnos[ idAlumnos=" + idAlumnos + " ]";
+    public void setMatriculasList(List<Matriculas> matriculasList) {
+        this.matriculasList = matriculasList;
     }
     
 }

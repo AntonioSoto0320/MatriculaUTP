@@ -55,6 +55,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
                     session.setAttribute("username", user.getUsuario());
                     session.setAttribute("nombre", alumno.getNombre().concat(" ").concat(alumno.getApellido()));
                     session.setAttribute("usuario", user);
+                    session.setAttribute("Alum", alumno);
                 }
 
                 for (Docentes docente : user.getDocentesList()) {
@@ -75,6 +76,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
                 HttpSession session = SessionUtils.getSession();
                 session.setAttribute("username", user.getUsuario());
+                
                 session.setAttribute("rol", user.getIdRol().getTipoRol());
 
                 String rolUrl = (String) session.getAttribute("rol");

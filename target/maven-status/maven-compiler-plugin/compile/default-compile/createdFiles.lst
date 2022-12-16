@@ -25,7 +25,9 @@ datos\CursoDao.class
 servicio\AlumnoService.class
 servicio\UsuarioServiceImpl.class
 web\ModalidadBean.class
+servicio\MatriculaService.class
 web\AulaBean.class
+domain\Matriculas.class
 servicio\CursoService.class
 servicio\DocenteService.class
 web\UsuarioAutorizacion.class
@@ -35,6 +37,7 @@ login\JAXRSConfiguration.class
 datos\CursoDaoImpl.class
 web\DocenteBean.class
 domain\Rol.class
+servicio\MatriculaServiceImpl.class
 web\UsuarioBean.class
 datos\UsuarioDaoImpl.class
 datos\ModalidadDaoImpl.class
@@ -45,9 +48,11 @@ datos\DocenteDao.class
 servicio\UsuarioService.class
 web\DocenteConverter.class
 datos\DocenteDaoImpl.class
+datos\MatriculaDao.class
 web\CursoConverter.class
 datos\ModalidadDao.class
 datos\AulaDao.class
+datos\MatriculaDaoImpl.class
 web\SeccionBean.class
 domain\Alumnos.class
 servicio\CursoServiceImpl.class

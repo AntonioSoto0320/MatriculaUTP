@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Estudiante</title>
+        <link rel="stylesheet" href="../../css/estilos_gestionCursos.css"/>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
+
+    </h:head>
+
+    <h:body>
+        <h:panelGrid columns="2" columnClasses="table-col-1,table-col-2" styleClass="table-plataforma" >
+
+            <h:form class="lista-opciones">
+                <h:panelGrid columns="1" styleClass="table-opciones" >
+
+                    <h:graphicImage value="../../img/logoUtp_sinfondo.png" styleClass="logo_utp_plataforma" ></h:graphicImage>
+
+                    <h:graphicImage value="../../img/imagen_perfil.png" class="imagen_perfil"></h:graphicImage>
+                    <h:outputText value="#{session.getAttribute('nombre')}" styleClass="cod" /> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
+                    <h:outputText value="#{session.getAttribute('username')}" styleClass="cod"/> <!-- AQUI ES DONDE TIENE QUE IR CAMBIANDO -->
+                    <h:outputText value="#{session.getAttribute('rol')}" styleClass="cod"/>
+
+                    <h:commandButton action="pag_inicio" value="PAGINA DE INICIO" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_cursos" value="MATRICULA" class="opcion" ></h:commandButton>
+                    <h:commandButton action="gestion_docentes" value="VER HORARIOS" class="opcion" ></h:commandButton>
+                    <h:commandButton action="#{usuarioBean.logout()}" value="CERRAR SESIÓN" class="opcion logout" ></h:commandButton>
+                </h:panelGrid>
+
+            </h:form>
+
+
+
+            <h:panelGrid columns="1" styleClass="contenido">
+                <h1 class="titulo" >Matricula </h1>
+
+
+                <h:panelGroup class="filtros">
+
+
+                    <div class="product card">
+                        <h:form>
+                            <p:dataTable id="tbl" var="seccion" value="#{seccionBean.secciones}"
+                                         sortMode="single" 
+                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                         paginator="true" rows="10" styleClass="mt-2">
+
+                                <p:column headerText="Curso" sortBy="#{seccion.idCurso.nombre}" filterBy="#{seccion.idCurso.nombre}">
+                                    <h:outputText value="#{seccion.idCurso.nombre}"/>
+                                </p:column>
+                                <p:column headerText="Docente" sortBy="#{seccion.idDocente.nombreCompleto}" filterBy="#{seccion.idDocente.nombreCompleto}">
+                                    <h:outputText style="vertical-align: middle; margin-left: .5rem"
+                                                  value="#{seccion.idDocente.nombreCompleto}"/>
+                                </p:column>
+                                <p:column headerText="Aula" sortBy="#{seccion.idAula.aula}" filterBy="#{seccion.idAula.aula}">
+                                    <h:outputText value="#{seccion.idAula.aula}"/>
+                                </p:column>
+                                <p:column headerText="Modalidad" sortBy="#{seccion.modalidad}"
+                                          filterBy="#{seccion.modalidad}">
+
+                                    <h:outputText style="vertical-align: middle; margin-left: .5rem"
+                                                  value="#{seccion.modalidad}"/>
+                                </p:column>
+                                <p:column headerText="Estado">
+
+                                    <h:outputText style="vertical-align: middle; margin-left: .5rem"
+                                                  value="#{seccion.estado}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:growl id="message" showDetail="true" />
+                                 
+                                    <p:commandButton value="Confirm" actionListener="#{seccionBean.confirm(seccion,session.getAttribute('Alum'))}" onclick="jQuery(this).attr('disabled', 'disabled');this.disabled=true;"  update="message" styleClass="mr-2" icon="pi pi-check">
+                                        <p:confirm header="Confirmation" message="¿Seguro que desea matricularse en este curso?" icon="pi pi-exclamation-triangle"/>
+                                    </p:commandButton>
+
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+                                    </p:confirmDialog>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+
+
+                </h:panelGroup>
+
+
+
+
+            </h:panelGrid>
+
+
+        </h:panelGrid>
+
+
+
+    </h:body>
+</html>

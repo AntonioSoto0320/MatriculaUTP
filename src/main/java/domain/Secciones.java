@@ -5,7 +5,9 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,10 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,12 +39,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Secciones.findByEstado", query = "SELECT s FROM Secciones s WHERE s.estado = :estado")})
 public class Secciones implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_secciones")
-    private Integer idSecciones;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -51,6 +49,15 @@ public class Secciones implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "estado")
     private String estado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idseccioM", fetch = FetchType.LAZY)
+    private List<Matriculas> matriculasList;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_secciones")
+    private Integer idSecciones;
     @JoinColumn(name = "id_aula", referencedColumnName = "id_aulas")
     @ManyToOne(fetch = FetchType.LAZY)
     private Aulas idAula;
@@ -92,21 +99,6 @@ public class Secciones implements Serializable {
         this.idSecciones = idSecciones;
     }
 
-    public String getModalidad() {
-        return modalidad;
-    }
-
-    public void setModalidad(String modalidad) {
-        this.modalidad = modalidad;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 
     public Aulas getIdAula() {
         return idAula;
@@ -155,6 +147,31 @@ public class Secciones implements Serializable {
     @Override
     public String toString() {
         return "com.utp.matriculate.fffffffffffffffffffffffffffff.Secciones[ idSecciones=" + idSecciones + " ]";
+    }
+
+    public String getModalidad() {
+        return modalidad;
+    }
+
+    public void setModalidad(String modalidad) {
+        this.modalidad = modalidad;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    @XmlTransient
+    public List<Matriculas> getMatriculasList() {
+        return matriculasList;
+    }
+
+    public void setMatriculasList(List<Matriculas> matriculasList) {
+        this.matriculasList = matriculasList;
     }
     
 }

@@ -38,12 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByContrase\u00f1a", query = "SELECT u FROM Usuario u WHERE u.contrase\u00f1a = :contrase\u00f1a")})
 public class Usuario implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_usuario")
-    private Integer idUsuario;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -54,6 +48,13 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "contrase\u00f1a")
     private String contraseña;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
     @OneToMany(mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private List<Alumnos> alumnosList;
     @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
@@ -83,21 +84,6 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
 
     @XmlTransient
     public List<Alumnos> getAlumnosList() {
@@ -148,6 +134,22 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "com.utp.matriculate.fffffffffffffffffffffffffffff.Usuario[ idUsuario=" + idUsuario + " ]";
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
     
 }
